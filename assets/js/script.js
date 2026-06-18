@@ -132,8 +132,8 @@ forms.forEach((form) => {
     const formData = new FormData(form);
     const formObj = Object.fromEntries(formData.entries());
 
-    // POST to FormSubmit AJAX endpoint
-    fetch("https://formsubmit.co/ajax/contacto@kreta.tech", {
+    // POST to Web3Forms AJAX endpoint
+    fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -156,21 +156,19 @@ forms.forEach((form) => {
           form.reset();
           requiredInputs.forEach((input) => input.classList.remove("is-valid", "is-invalid"));
         } else {
-          throw new Error("FormSubmit response was not successful");
+          throw new Error("Web3Forms response was not successful");
         }
       })
       .catch(() => {
-        // Fallback/offline success message simulation for local validation
+        // No fingir éxito: el mensaje no se envió, no resetear el form
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.textContent = originalBtnText;
         }
         if (formMessage) {
-          formMessage.textContent = "Gracias por escribirnos. Te respondemos en menos de 24 horas con una propuesta para tu caso.";
-          formMessage.classList.add("is-success");
+          formMessage.textContent = "No pudimos enviar tu mensaje. Reintentá o escribinos por WhatsApp.";
+          formMessage.classList.add("is-error");
         }
-        form.reset();
-        requiredInputs.forEach((input) => input.classList.remove("is-valid", "is-invalid"));
       });
   });
 });

@@ -36,5 +36,5 @@ No build, test, lint, or format commands exist. Open `index.html` directly in a 
 - **Headings:** Fraunces (serif), italic weight 500 for subheadings.
 - **Body:** Manrope (sans-serif), weights 400–800.
 - **Colors:** Petróleo `#0A2E36`, teal `#1A7A6B`, warm accent `#D4A853`, cool gray palette.
-- **Forms:** POST to `https://formsubmit.co/ajax/...` (FormSubmit service).
+- **Forms:** POST to `https://api.web3forms.com/submit` (Web3Forms service).
 - **WhatsApp:** Links via `wa.me/5491161332021`.

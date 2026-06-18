@@ -116,7 +116,8 @@
             <div class="contact-card">
               <h3 class="h4 mb-4 font-family-display italic">Contanos sobre tu proyecto</h3>
               
-              <form class="contact-form needs-validation" id="formularioSubpage" novalidate>
+              <form action="https://api.web3forms.com/submit" method="POST" class="contact-form needs-validation" id="formularioSubpage" novalidate>
+                <input type="hidden" name="access_key" value="cd071995-b483-4577-bcef-cd78d010db96">
                 <div class="mb-3">
                   <label for="name" class="form-label">Nombre completo</label>
                   <input id="name" name="name" type="text" class="form-control" placeholder="Ej: Sebastián Arroyo" required autocomplete="name">

@@ -106,8 +106,8 @@
           <div class="hero-pill hero-pill--left">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
             <div>
-              <strong>Landing activa</strong>
-              <p>+52 consultas este mes</p>
+              <strong>Landing en vivo</strong>
+              <p>Captando consultas</p>
             </div>
           </div>
           <div class="hero-pill hero-pill--right">
@@ -535,7 +535,8 @@
           </div>
         </div>
 
-        <form class="contact-form" id="formulario" novalidate>
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="formulario" novalidate>
+          <input type="hidden" name="access_key" value="cd071995-b483-4577-bcef-cd78d010db96">
           <h3>Contanos sobre tu proyecto</h3>
 
           <label for="name">Nombre</label>
@@ -595,6 +596,7 @@
         <a class="brand brand--footer" href="index.html">Kreta<span class="brand-dot">.</span></a>
         <p>Tecnología y finanzas para hacer crecer negocios reales.</p>
         <p class="footer-email">contacto@kreta.tech</p>
+        <p class="footer-meta">Argentina · © 2026 Kreta</p>
       </div>
       <div class="footer-links">
         <a href="#saas">BiFrost POS</a>
