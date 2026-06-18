@@ -20,6 +20,8 @@
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
+  <!-- Bootstrap 5.3.8 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -39,35 +41,30 @@
 
   <header class="site-header" id="top">
     <div class="container">
-      <nav class="navbar" aria-label="Principal">
+      <nav class="navbar navbar-expand-lg py-0" aria-label="Principal">
         <a class="brand" href="#top">Kreta<span class="brand-dot">.</span></a>
 
-        <button
-          class="menu-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="site-menu"
-          aria-label="Abrir menú"
-        >
+        <button class="menu-toggle navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#siteMenu" aria-controls="siteMenu" aria-expanded="false" aria-label="Abrir menú">
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <div class="nav-links" id="site-menu">
-          <a href="#servicios">Servicios</a>
-          <a href="#saas">POS &amp; Analytics</a>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#proceso">Proceso</a>
-          <a href="#contacto">Contacto</a>
-          <a
-            class="button button--nav"
-            href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Pedir propuesta
-          </a>
+        <div class="collapse navbar-collapse justify-content-end" id="siteMenu">
+          <div class="nav-links d-flex align-items-center flex-column flex-lg-row gap-lg-4 mt-3 mt-lg-0">
+            <a href="secciones/servicios.html">Servicios</a>
+            <a href="#saas">POS &amp; Analytics</a>
+            <a href="secciones/nosotros.html">Nosotros</a>
+            <a href="secciones/contacto.html">Contacto</a>
+            <a
+              class="button button--nav"
+              href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pedir propuesta
+            </a>
+          </div>
         </div>
       </nav>
     </div>
@@ -628,12 +625,15 @@
 
           <label for="name">Nombre</label>
           <input id="name" name="name" type="text" placeholder="Tu nombre" required autocomplete="name">
+          <div class="invalid-feedback">Por favor, ingresá tu nombre.</div>
 
           <label for="business">Negocio</label>
           <input id="business" name="business" type="text" placeholder="Nombre de tu negocio o emprendimiento" required>
+          <div class="invalid-feedback">Por favor, ingresá el nombre de tu negocio.</div>
 
           <label for="email">Email</label>
           <input id="email" name="email" type="email" placeholder="contacto@kreta.tech" required autocomplete="email">
+          <div class="invalid-feedback">Por favor, ingresá un correo electrónico válido.</div>
 
           <label for="service">¿Qué necesitás?</label>
           <select id="service" name="service" required>
@@ -651,6 +651,7 @@
             <option value="combo">Solución combinada (tech + finanzas)</option>
             <option value="consulta">No sé todavía, quiero una consulta</option>
           </select>
+          <div class="invalid-feedback">Por favor, elegí una opción.</div>
 
           <label for="message">Contanos más</label>
           <textarea
@@ -660,6 +661,7 @@
             placeholder="¿Qué problema querés resolver? ¿Cuáles son tus objetivos?"
             required
           ></textarea>
+          <div class="invalid-feedback">Por favor, describinos tus objetivos.</div>
 
           <button class="button button--primary button--full" type="submit">Quiero recibir una propuesta</button>
           <p class="form-note" id="form-message" role="status" aria-live="polite"></p>
@@ -686,6 +688,8 @@
     </div>
   </footer>
 
+  <!-- Bootstrap 5.3.8 JS Bundle CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   <script src="assets/js/script.js"></script>
 </body>
 </html>
