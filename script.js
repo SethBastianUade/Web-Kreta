@@ -55,3 +55,28 @@ if (contactForm && formMessage) {
     contactForm.reset();
   });
 }
+
+// Reveal al scroll — progressive enhancement (sin JS, todo queda visible)
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.body.classList.add("reveal-ready");
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  document
+    .querySelectorAll(
+      ".section-heading, .info-card, .service-card, .saas-content, .saas-visual, .team-card, .benefit-card, .process-card, .cta-banner"
+    )
+    .forEach((el) => {
+      el.classList.add("reveal-on");
+      revealObserver.observe(el);
+    });
+}
