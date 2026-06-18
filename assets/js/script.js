@@ -27,14 +27,12 @@ const sectionObserver = new IntersectionObserver(
       const id = entry.target.getAttribute("id");
       const currentLink = document.querySelector(`.nav-links a[href="#${id}"]`);
 
-      if (!currentLink) return;
-
       if (entry.isIntersecting) {
         document
           .querySelectorAll(".nav-links a[href^='#']")
           .forEach((link) => link.classList.remove("is-active"));
 
-        currentLink.classList.add("is-active");
+        if (currentLink) currentLink.classList.add("is-active");
       }
     });
   },
