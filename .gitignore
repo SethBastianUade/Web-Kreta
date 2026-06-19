@@ -1,3 +1,6 @@
+# Dependencias (el CSS compilado SÍ se commitea → deploy buildless)
+node_modules
+
 # Ignorar agentes de claude
 README.md
 skills-lock.json

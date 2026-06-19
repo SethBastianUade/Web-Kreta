@@ -13,104 +13,89 @@
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Bootstrap 5.3.8 CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Noto+Serif:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tailwind.css">
   <style>
-    .subpage-hero {
-      padding: 6rem 0 4rem 0;
-      background: var(--surface-alt);
-      border-bottom: 1px solid var(--line);
-    }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   </style>
 </head>
-<body>
+<body class="selection:bg-primary/10 selection:text-primary">
 
-  <!-- Floating WhatsApp -->
-  <a class="floating-whatsapp" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20Kreta" target="_blank" rel="noopener noreferrer" aria-label="Hablar por WhatsApp">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
+  <!-- ─── Floating WhatsApp ─── -->
+  <a class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-[100px] bg-primary px-4 py-3 text-xs font-semibold text-on-primary shadow-2xl transition-transform duration-300 hover:-translate-y-0.5"
+    href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20Kreta" target="_blank" rel="noopener noreferrer" aria-label="Hablar por WhatsApp">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     WhatsApp
   </a>
 
-  <!-- Header / Navbar -->
-  <header class="site-header" id="top">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg py-0" aria-label="Principal">
-        <a class="brand" href="../index.html">Kreta<span class="brand-dot">.</span></a>
-
-        <button class="menu-toggle navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#siteMenu" aria-controls="siteMenu" aria-expanded="false" aria-label="Abrir menú">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="siteMenu">
-          <div class="nav-links d-flex align-items-center flex-column flex-lg-row gap-lg-4 mt-3 mt-lg-0">
-            <a href="../index.html#saas">BiFrost POS</a>
-            <a href="../index.html#servicios">Servicios Web y Finanzas</a>
-            <a href="nosotros.html" class="is-active">Nosotros</a>
-            <a href="contacto.html">Contacto</a>
-            <a class="button button--nav" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">
-              Pedir propuesta
-            </a>
-          </div>
-        </div>
+  <!-- ─── Header ─── -->
+  <header class="sticky top-0 z-40 border-b border-outline-variant/60 bg-background/80 backdrop-blur-xl" id="top">
+    <div class="mx-auto flex max-w-container items-center justify-between px-5 py-4">
+      <a class="font-serif text-2xl font-semibold tracking-tight text-primary" href="../index.html">Kreta<span class="text-on-primary-container">.</span></a>
+      <nav class="hidden items-center gap-8 md:flex" aria-label="Principal">
+        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="../index.html#saas">BiFrost POS</a>
+        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="servicios.html">Servicios</a>
+        <a class="text-sm font-medium text-primary" href="nosotros.html" aria-current="page">Nosotros</a>
+        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="contacto.html">Contacto</a>
+        <a class="inline-flex items-center rounded-[100px] bg-primary px-5 py-2.5 text-xs font-semibold text-on-primary transition-all duration-300 hover:bg-primary/90" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">Pedir propuesta</a>
       </nav>
+      <button class="inline-flex flex-col gap-1.5 p-2 md:hidden" type="button" data-menu-toggle aria-label="Abrir menú" aria-expanded="false">
+        <span class="block h-px w-6 bg-primary"></span><span class="block h-px w-6 bg-primary"></span><span class="block h-px w-6 bg-primary"></span>
+      </button>
+    </div>
+    <div class="hidden border-t border-outline-variant/60 bg-background px-5 py-4 md:hidden" data-menu>
+      <div class="flex flex-col gap-4">
+        <a class="text-sm font-medium text-secondary hover:text-primary" href="../index.html#saas">BiFrost POS</a>
+        <a class="text-sm font-medium text-secondary hover:text-primary" href="servicios.html">Servicios</a>
+        <a class="text-sm font-medium text-secondary hover:text-primary" href="nosotros.html">Nosotros</a>
+        <a class="text-sm font-medium text-secondary hover:text-primary" href="contacto.html">Contacto</a>
+        <a class="inline-flex w-fit items-center rounded-[100px] bg-primary px-5 py-2.5 text-xs font-semibold text-on-primary" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">Pedir propuesta</a>
+      </div>
     </div>
   </header>
 
   <main>
-    <!-- Subpage Hero -->
-    <section class="subpage-hero">
-      <div class="container">
-        <span class="eyebrow">Sobre nosotros</span>
-        <h1 class="display-5 font-family-display italic">Nuestra historia, equipo y filosofía de trabajo.</h1>
-        <p class="lead text-muted max-width-600 mt-2">Combinamos ingeniería de software aplicada a ventas con análisis financiero estratégico para hacer crecer tu negocio.</p>
+    <!-- ─── Hero ─── -->
+    <section class="border-b border-outline-variant px-5 pb-16 pt-20">
+      <div class="mx-auto max-w-container">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Sobre nosotros</span>
+        <h1 class="mt-4 max-w-3xl font-serif text-4xl font-light leading-tight tracking-tight text-primary md:text-6xl">Nuestra historia, equipo y filosofía de trabajo.</h1>
+        <p class="mt-5 max-w-2xl text-base font-light leading-relaxed text-secondary">Combinamos ingeniería de software aplicada a ventas con análisis financiero estratégico para hacer crecer tu negocio.</p>
       </div>
     </section>
 
-    <!-- Sección: Historia -->
-    <section class="section section--white">
-      <div class="container">
-        <div class="row align-items-center g-5">
-          <div class="col-lg-6">
-            <div class="section-heading mb-4">
-              <span class="eyebrow">La Trayectoria</span>
-              <h2>Cómo nació Kreta</h2>
+    <!-- ─── Historia ─── -->
+    <section class="px-5 py-20">
+      <div class="mx-auto grid max-w-container items-start gap-12 lg:grid-cols-2">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">La trayectoria</span>
+          <h2 class="mt-4 font-serif text-3xl font-light leading-tight tracking-tight text-primary md:text-4xl">Cómo nació Kreta</h2>
+          <p class="mt-5 text-[15px] font-light leading-relaxed text-secondary">Kreta nació al identificar un problema crítico y recurrente: la desconexión total entre la tecnología de una empresa y sus finanzas. Las agencias de marketing y desarrollo programaban sin entender la estructura de costos del cliente, y los asesores financieros recomendaban sobre planillas de Excel que la empresa no tenía cómo ejecutar ni medir.</p>
+          <p class="mt-4 text-[15px] font-light leading-relaxed text-secondary">Decidimos unir nuestros dos campos —desarrollo de software y finanzas corporativas— para crear un servicio integral. No hacemos páginas bonitas que no convierten, ni planificaciones financieras abstractas. Creamos canales de venta eficientes y los conectamos a paneles financieros automatizados en tiempo real.</p>
+        </div>
+        <div class="rounded-[20px] border border-outline-variant bg-surface-container-low p-8">
+          <h3 class="font-serif text-2xl font-light tracking-tight text-primary">Nuestros 3 pilares</h3>
+          <div class="mt-6 space-y-6">
+            <div class="flex gap-4">
+              <span class="font-serif text-2xl font-light text-on-primary-container">01</span>
+              <div>
+                <h4 class="text-base font-medium text-primary">Decisiones basadas en datos</h4>
+                <p class="mt-1 text-sm font-light leading-relaxed text-secondary">Cada línea de código y cada proceso que automatizamos apunta a mejorar tu flujo de caja o tu margen de rentabilidad.</p>
+              </div>
             </div>
-            <p class="text-muted mb-3">
-              Kreta nació al identificar un problema crítico y recurrente en el mercado de consultoría y agencias digitales: la desconexión total entre la tecnología de una empresa y sus finanzas. Las agencias de marketing y desarrollo web programaban sin entender la estructura de costos de los clientes, y los asesores financieros daban recomendaciones estratégicas sobre planillas de Excel que la empresa no tenía la capacidad técnica de ejecutar o medir.
-            </p>
-            <p class="text-muted">
-              Decidimos unir nuestros dos campos de experiencia —desarrollo de software y finanzas corporativas— para crear un servicio integral. No hacemos páginas web bonitas que no convierten, ni hacemos planificaciones financieras abstractas. Creamos canales de venta eficientes y los conectamos a paneles financieros automatizados en tiempo real.
-            </p>
-          </div>
-          <div class="col-lg-6">
-            <div class="p-4 bg-light border rounded-3">
-              <h3 class="h4 mb-3 font-family-display italic">Nuestros 3 Pilares Fundamentales</h3>
-              <div class="d-flex gap-3 mb-3">
-                <div class="text-primary fs-3">01</div>
-                <div>
-                  <h4 class="h6 mb-1">Decisiones basadas en datos</h4>
-                  <p class="small text-muted mb-0">Cada línea de código que escribimos y cada proceso que automatizamos tiene como fin directo mejorar el flujo de caja o el margen de rentabilidad de tu negocio.</p>
-                </div>
+            <div class="flex gap-4">
+              <span class="font-serif text-2xl font-light text-on-primary-container">02</span>
+              <div>
+                <h4 class="text-base font-medium text-primary">Acompañamiento profesional</h4>
+                <p class="mt-1 text-sm font-light leading-relaxed text-secondary">No somos un proveedor de una sola vez: nos convertimos en socios estratégicos en tu infraestructura digital y tus decisiones financieras clave.</p>
               </div>
-              <div class="d-flex gap-3 mb-3">
-                <div class="text-primary fs-3">02</div>
-                <div>
-                  <h4 class="h6 mb-1">Acompañamiento profesional</h4>
-                  <p class="small text-muted mb-0">No somos proveedores externos de una sola vez; nos convertimos en socios estratégicos que te asesoran tanto en tu infraestructura digital como en tus decisiones financieras clave.</p>
-                </div>
-              </div>
-              <div class="d-flex gap-3">
-                <div class="text-primary fs-3">03</div>
-                <div>
-                  <h4 class="h6 mb-1">Automatización real</h4>
-                  <p class="small text-muted mb-0">Eliminamos las tareas manuales repetitivas que quitan tiempo a los dueños de negocios para que puedan enfocarse en la estrategia y el crecimiento global.</p>
-                </div>
+            </div>
+            <div class="flex gap-4">
+              <span class="font-serif text-2xl font-light text-on-primary-container">03</span>
+              <div>
+                <h4 class="text-base font-medium text-primary">Automatización real</h4>
+                <p class="mt-1 text-sm font-light leading-relaxed text-secondary">Eliminamos las tareas manuales repetitivas para que puedas enfocarte en la estrategia y el crecimiento.</p>
               </div>
             </div>
           </div>
@@ -118,73 +103,74 @@
       </div>
     </section>
 
-    <!-- Sección: Equipo -->
-    <section class="section section--muted">
-      <div class="container">
-        <div class="section-heading text-center mb-5">
-          <span class="eyebrow">Los Especialistas</span>
-          <h2>El equipo detrás de Kreta</h2>
+    <!-- ─── Equipo ─── -->
+    <section class="border-t border-outline-variant bg-surface-container-low px-5 py-20">
+      <div class="mx-auto max-w-container">
+        <div class="mb-12 max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Los especialistas</span>
+          <h2 class="mt-4 font-serif text-3xl font-light leading-tight tracking-tight text-primary md:text-4xl">El equipo detrás de Kreta</h2>
         </div>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <article class="flex flex-col rounded-[20px] border border-outline-variant bg-surface-container-lowest p-8">
+            <span class="material-symbols-outlined text-3xl text-primary">code</span>
+            <span class="mt-6 text-xs font-semibold uppercase tracking-[0.15em] text-secondary">Desarrollo &amp; Tecnología</span>
+            <h3 class="mt-2 text-2xl font-medium tracking-tight text-primary">Sebastián Arroyo</h3>
+            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Ingeniero de software especializado en arquitecturas web eficientes, integraciones de API, automatizaciones comerciales y chatbots de WhatsApp. Su objetivo: que tu tecnología trabaje para vos.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Landing pages</span>
+              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Chatbots WA</span>
+              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Automatizaciones</span>
+            </div>
+          </article>
+          <article class="flex flex-col rounded-[20px] border border-outline-variant bg-surface-container-lowest p-8">
+            <span class="material-symbols-outlined text-3xl text-primary">monitoring</span>
+            <span class="mt-6 text-xs font-semibold uppercase tracking-[0.15em] text-secondary">Finanzas &amp; Estrategia</span>
+            <h3 class="mt-2 text-2xl font-medium tracking-tight text-primary">Juan Petrus</h3>
+            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Licenciado en Finanzas Corporativas, enfocado en planeamiento de presupuesto, optimización de costos, estructuración de precios y proyecciones de flujo de caja para PyMEs. Su meta: proteger y maximizar tus márgenes.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Planificación</span>
+              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Flujo de caja</span>
+              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">BiFrost POS</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        <div class="row g-4 justify-content-center">
-          <div class="col-md-6 col-lg-5">
-            <article class="team-card h-100 bg-white p-4 border rounded-3">
-              <div class="team-card__avatar team-card__avatar--tech mb-3">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-              </div>
-              <div class="team-card__content">
-                <span class="team-card__role team-card__role--tech text-uppercase small font-weight-bold">Desarrollo &amp; Tecnología</span>
-                <h3 class="h5 mt-1">Sebastián Arroyo</h3>
-                <p class="text-muted small">Ingeniero de software especializado en arquitecturas web eficientes, integraciones de API, automatizaciones comerciales y chatbots integrados con WhatsApp. Su objetivo es que tu tecnología trabaje para vos.</p>
-                <ul class="team-card__tags list-inline mt-2">
-                  <li class="list-inline-item badge bg-light text-dark border">Landing Pages</li>
-                  <li class="list-inline-item badge bg-light text-dark border">Chatbots WA</li>
-                  <li class="list-inline-item badge bg-light text-dark border">Automatizaciones</li>
-                </ul>
-              </div>
-            </article>
+    <!-- ─── CTA ─── -->
+    <section class="px-5 py-20">
+      <div class="mx-auto max-w-container">
+        <div class="flex flex-col items-start gap-6 rounded-[20px] border border-outline-variant bg-surface-container-low p-10 md:flex-row md:items-center md:justify-between">
+          <div class="max-w-xl">
+            <h2 class="font-serif text-3xl font-light leading-tight tracking-tight text-primary">¿Te gustaría trabajar con nosotros?</h2>
+            <p class="mt-3 text-base font-light leading-relaxed text-secondary">Hagamos un diagnóstico inicial sin costo y veamos cómo podemos ayudarte.</p>
           </div>
-
-          <div class="col-md-6 col-lg-5">
-            <article class="team-card h-100 bg-white p-4 border rounded-3">
-              <div class="team-card__avatar team-card__avatar--finance mb-3">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg>
-              </div>
-              <div class="team-card__content">
-                <span class="team-card__role team-card__role--finance text-uppercase small font-weight-bold">Finanzas &amp; Estrategia</span>
-                <h3 class="h5 mt-1">Juan Petrus</h3>
-                <p class="text-muted small">Licenciado en Finanzas Corporativas enfocado en planeamiento de presupuesto, optimización de costos, estructuración de precios y proyecciones de flujo de caja para PyMEs. Su meta es proteger y maximizar tus márgenes.</p>
-                <ul class="team-card__tags list-inline mt-2">
-                  <li class="list-inline-item badge bg-light text-dark border">Planificación</li>
-                  <li class="list-inline-item badge bg-light text-dark border">Flujo de Caja</li>
-                  <li class="list-inline-item badge bg-light text-dark border">BiFrost POS</li>
-                </ul>
-              </div>
-            </article>
-          </div>
+          <a class="inline-flex shrink-0 items-center rounded-[100px] bg-primary px-7 py-3 text-sm font-semibold text-on-primary transition-all duration-300 hover:bg-primary/90" href="contacto.html">Contactar</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container site-footer__content">
-      <div>
-        <a class="brand brand--footer" href="../index.html">Kreta<span class="brand-dot">.</span></a>
-        <p>Tecnología y finanzas para hacer crecer negocios reales.</p>
-        <p class="footer-email">contacto@kreta.tech</p>
+  <!-- ─── Footer ─── -->
+  <footer class="border-t border-outline-variant px-5 py-14">
+    <div class="mx-auto max-w-container">
+      <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+        <div class="max-w-sm">
+          <a class="font-serif text-2xl font-semibold tracking-tight text-primary" href="../index.html">Kreta<span class="text-on-primary-container">.</span></a>
+          <p class="mt-4 text-sm font-light leading-relaxed text-secondary">Tecnología y finanzas para hacer crecer negocios reales.</p>
+          <p class="mt-3 text-sm text-secondary">contacto@kreta.tech</p>
+        </div>
+        <nav class="flex flex-col gap-3 md:items-end" aria-label="Pie de página">
+          <a class="text-sm text-secondary transition-colors hover:text-primary" href="../index.html#saas">BiFrost POS</a>
+          <a class="text-sm text-secondary transition-colors hover:text-primary" href="servicios.html">Servicios</a>
+          <a class="text-sm text-secondary transition-colors hover:text-primary" href="nosotros.html">Nosotros</a>
+          <a class="text-sm text-secondary transition-colors hover:text-primary" href="contacto.html">Contacto</a>
+        </nav>
       </div>
-      <div class="footer-links">
-        <a href="../index.html#saas">BiFrost POS</a>
-        <a href="../index.html#servicios">Servicios Web y Finanzas</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
+      <div class="mt-12 border-t border-outline-variant pt-6 text-xs text-on-primary-container">Argentina · © 2026 Kreta</div>
     </div>
   </footer>
 
-  <!-- Bootstrap 5.3.8 JS Bundle CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="../assets/js/script.js"></script>
 </body>
 </html>

@@ -1,184 +1,21 @@
-// Hamburger Menu & Bootstrap Collapse integration
-const menuToggle = document.querySelector(".menu-toggle");
-const navMenu = document.querySelector(".nav-links");
-const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
-const sections = document.querySelectorAll("main section[id]");
-
-// Handle menu toggle for custom styles + Bootstrap collapse events
-if (menuToggle) {
-  const siteMenuEl = document.getElementById("siteMenu");
-  if (siteMenuEl) {
-    // Sync custom hamburger animations with Bootstrap collapse events
-    siteMenuEl.addEventListener("show.bs.collapse", () => {
-      menuToggle.classList.add("is-open");
-      menuToggle.setAttribute("aria-expanded", "true");
-    });
-    siteMenuEl.addEventListener("hide.bs.collapse", () => {
-      menuToggle.classList.remove("is-open");
-      menuToggle.setAttribute("aria-expanded", "false");
-    });
-  } else if (navMenu) {
-    // Fallback for custom JS toggle if Bootstrap collapse is not used
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navMenu.classList.toggle("is-open");
-      menuToggle.classList.toggle("is-open", isOpen);
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("is-open");
-        menuToggle.classList.remove("is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
-}
-
-// Active link highlighting via IntersectionObserver
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      const id = entry.target.getAttribute("id");
-      const currentLink = document.querySelector(`.nav-links a[href="#${id}"]`);
-
-      if (entry.isIntersecting) {
-        document
-          .querySelectorAll(".nav-links a[href^='#']")
-          .forEach((link) => link.classList.remove("is-active"));
-
-        if (currentLink) currentLink.classList.add("is-active");
-      }
-    });
-  },
-  {
-    threshold: 0.4,
-    rootMargin: "-10% 0px -40% 0px",
-  }
-);
-
-sections.forEach((section) => sectionObserver.observe(section));
-
-// Form Validation and Feedback (Visual feedback to the user)
-const forms = document.querySelectorAll(".contact-form");
-
-forms.forEach((form) => {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const formMessage = form.querySelector(".form-note") || document.querySelector("#form-message");
-    if (formMessage) {
-      formMessage.textContent = "";
-      formMessage.className = "form-note";
-    }
-
-    let isValid = true;
-    const requiredInputs = form.querySelectorAll("input[required], select[required], textarea[required]");
-
-    requiredInputs.forEach((input) => {
-      // Validate field values
-      let fieldValid = true;
-      if (!input.value.trim()) {
-        fieldValid = false;
-      } else if (input.type === "email" && !validateEmail(input.value)) {
-        fieldValid = false;
-      }
-
-      if (!fieldValid) {
-        isValid = false;
-        input.classList.add("is-invalid");
-        input.classList.remove("is-valid");
-      } else {
-        input.classList.add("is-valid");
-        input.classList.remove("is-invalid");
-      }
-
-      // Add real-time event listener to clear invalid state on typing
-      input.addEventListener("input", () => {
-        let currentValid = true;
-        if (!input.value.trim()) {
-          currentValid = false;
-        } else if (input.type === "email" && !validateEmail(input.value)) {
-          currentValid = false;
-        }
-
-        if (currentValid) {
-          input.classList.remove("is-invalid");
-          input.classList.add("is-valid");
-        } else {
-          input.classList.remove("is-valid");
-          input.classList.add("is-invalid");
-        }
-      });
-    });
-
-    if (!isValid) {
-      if (formMessage) {
-        formMessage.textContent = "Por favor, completa correctamente todos los campos obligatorios.";
-        formMessage.classList.add("is-error");
-      }
-      return;
-    }
-
-    // Submit form via AJAX
-    const submitBtn = form.querySelector("button[type='submit']");
-    const originalBtnText = submitBtn ? submitBtn.textContent : "Enviar";
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Enviando propuesta...";
-    }
-
-    const formData = new FormData(form);
-    const formObj = Object.fromEntries(formData.entries());
-
-    // POST to Web3Forms AJAX endpoint
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(formObj)
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalBtnText;
-        }
-
-        if (data.success === "true" || data.success === true) {
-          if (formMessage) {
-            formMessage.textContent = "¡Gracias por escribirnos! Te responderemos en menos de 24 horas con una propuesta para tu caso.";
-            formMessage.classList.add("is-success");
-          }
-          form.reset();
-          requiredInputs.forEach((input) => input.classList.remove("is-valid", "is-invalid"));
-        } else {
-          throw new Error("Web3Forms response was not successful");
-        }
-      })
-      .catch(() => {
-        // No fingir éxito: el mensaje no se envió, no resetear el form
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalBtnText;
-        }
-        if (formMessage) {
-          formMessage.textContent = "No pudimos enviar tu mensaje. Reintentá o escribinos por WhatsApp.";
-          formMessage.classList.add("is-error");
-        }
-      });
+// ── Menú mobile (sin Bootstrap) ──────────────────────
+const menuToggle = document.querySelector("[data-menu-toggle]");
+const menuPanel = document.querySelector("[data-menu]");
+if (menuToggle && menuPanel) {
+  menuToggle.addEventListener("click", () => {
+    const open = menuPanel.classList.toggle("hidden") === false;
+    menuToggle.setAttribute("aria-expanded", String(open));
   });
-});
-
-function validateEmail(email) {
-  const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  return re.test(String(email).toLowerCase());
+  // Cerrar al tocar un link
+  menuPanel.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => {
+      menuPanel.classList.add("hidden");
+      menuToggle.setAttribute("aria-expanded", "false");
+    })
+  );
 }
 
-// Reveal al scroll — progressive enhancement
+// ── Reveal progresivo al scroll ──────────────────────
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
   document.body.classList.add("reveal-ready");
   const revealObserver = new IntersectionObserver(
@@ -192,13 +29,92 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     },
     { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
   );
-
-  document
-    .querySelectorAll(
-      ".section-heading, .info-card, .service-card, .saas-content, .saas-visual, .team-card, .benefit-card, .process-card, .cta-banner"
-    )
-    .forEach((el) => {
-      el.classList.add("reveal-on");
-      revealObserver.observe(el);
-    });
+  document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
 }
+
+// ── Formulario de contacto (Web3Forms, AJAX) ─────────
+function validateEmail(email) {
+  const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return re.test(String(email).toLowerCase());
+}
+
+document.querySelectorAll(".contact-form").forEach((form) => {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formMessage = form.querySelector(".form-note") || document.querySelector("#form-message");
+    if (formMessage) {
+      formMessage.textContent = "";
+      formMessage.className = "form-note mt-3 text-center text-sm";
+    }
+
+    let isValid = true;
+    const requiredInputs = form.querySelectorAll("input[required], select[required], textarea[required]");
+
+    requiredInputs.forEach((input) => {
+      let fieldValid = true;
+      if (!input.value.trim()) fieldValid = false;
+      else if (input.type === "email" && !validateEmail(input.value)) fieldValid = false;
+
+      input.classList.toggle("ring-2", !fieldValid);
+      input.classList.toggle("ring-error", !fieldValid);
+      if (!fieldValid) isValid = false;
+
+      input.addEventListener("input", () => {
+        let ok = input.value.trim() && !(input.type === "email" && !validateEmail(input.value));
+        input.classList.toggle("ring-2", !ok);
+        input.classList.toggle("ring-error", !ok);
+      });
+    });
+
+    if (!isValid) {
+      if (formMessage) {
+        formMessage.textContent = "Por favor, completá correctamente todos los campos obligatorios.";
+        formMessage.classList.add("text-error");
+      }
+      return;
+    }
+
+    const submitBtn = form.querySelector("button[type='submit']");
+    const originalBtnText = submitBtn ? submitBtn.textContent : "Enviar";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando propuesta...";
+    }
+
+    const formObj = Object.fromEntries(new FormData(form).entries());
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(formObj),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+        if (data.success === "true" || data.success === true) {
+          if (formMessage) {
+            formMessage.textContent = "¡Gracias por escribirnos! Te responderemos en menos de 24 horas con una propuesta para tu caso.";
+            formMessage.classList.add("text-primary");
+          }
+          form.reset();
+          requiredInputs.forEach((i) => i.classList.remove("ring-2", "ring-error"));
+        } else {
+          throw new Error("Web3Forms response was not successful");
+        }
+      })
+      .catch(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+        if (formMessage) {
+          formMessage.textContent = "No pudimos enviar tu mensaje. Reintentá o escribinos por WhatsApp.";
+          formMessage.classList.add("text-error");
+        }
+      });
+  });
+});
