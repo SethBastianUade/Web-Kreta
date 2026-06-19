@@ -1,0 +1,14 @@
+# Archivos que NO se sirven como assets estáticos (Cloudflare Workers Static Assets).
+# node_modules es lo que rompe el deploy (workerd pesa >25 MiB); el resto es toolchain/docs.
+node_modules
+.git
+.gitignore
+.assetsignore
+package.json
+package-lock.json
+tailwind.config.js
+assets/css/tailwind-src.css
+AGENTS.md
+README.md
+skills-lock.json
+.agents
