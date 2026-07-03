@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kreta | Tech &amp; Finance Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#690005",
+                        "surface-tint": "#c5c0ff",
+                        "surface-container-low": "#1c1b1b",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#353534",
+                        "on-tertiary-container": "#1d2947",
+                        "surface-dim": "#131313",
+                        "surface-glass": "rgba(255, 255, 255, 0.03)",
+                        "primary-fixed": "#e3dfff",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#313030",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "on-secondary": "#621000",
+                        "tertiary-fixed-dim": "#bac6ec",
+                        "primary": "#c5c0ff",
+                        "ember-glow": "#F2994A",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-highest": "#353534",
+                        "secondary-container": "#88270f",
+                        "tertiary-container": "#8490b4",
+                        "border-glass": "rgba(255, 255, 255, 0.12)",
+                        "on-secondary-container": "#ffa089",
+                        "secondary-fixed-dim": "#ffb4a3",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed": "#130068",
+                        "deep-charcoal": "#1A1A1E",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#3a4666",
+                        "on-tertiary-fixed": "#0d1a38",
+                        "inverse-primary": "#5448d5",
+                        "tertiary": "#bac6ec",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#3d0700",
+                        "on-surface-variant": "#c8c4d7",
+                        "outline": "#918fa0",
+                        "on-primary-fixed-variant": "#3b2abd",
+                        "cool-violet": "#9D85FF",
+                        "primary-fixed-dim": "#c5c0ff",
+                        "secondary-fixed": "#ffdad2",
+                        "tertiary-fixed": "#dae2ff",
+                        "on-tertiary": "#23304e",
+                        "on-secondary-fixed-variant": "#84240d",
+                        "on-primary": "#2300a3",
+                        "background": "#131313",
+                        "secondary": "#ffb4a3",
+                        "surface-container": "#201f1f",
+                        "outline-variant": "#474554",
+                        "primary-container": "#8981ff",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-container": "#1e0090"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "max-width": "1280px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["EB Garamond"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["EB Garamond"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-sm": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"],
+                        "label-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(197, 192, 255, 0.3);
+            transform: translateY(-4px);
+        }
+        .inner-glow-top {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .parallax-layer {
+            will-change: transform;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-cool-violet selection:text-white">
+<!-- Background Shader -->
+<!-- STITCH_SHADER_START:ANIMATION_3 class="fixed inset-0 w-full h-full -z-10 opacity-40" -->
+<div class="fixed inset-0 w-full h-full -z-10 opacity-40" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_3" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_3');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+// Simplex 2D noise
+vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+float snoise(vec2 v){
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+           -0.577350269189626, 0.024390243902439);
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+  vec2 i1;
+  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+  + i.x + vec3(0.0, i1.x, 1.0 ));
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+    dot(x12.zw,x12.zw)), 0.0);
+  m = m*m ;
+  m = m*m ;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec2 mouse = u_mouse / u_resolution;
+    
+    // Background color (near black)
+    vec3 color = vec3(0.039, 0.039, 0.039);
+    
+    // Aurora light ribbons
+    float n1 = snoise(uv * 2.0 + u_time * 0.1);
+    float n2 = snoise(uv * 3.0 - u_time * 0.15);
+    float aurora = smoothstep(0.1, 0.5, n1 * n2);
+    
+    vec3 auroraColor1 = vec3(0.486, 0.447, 1.0); // Violet/Blue
+    vec3 auroraColor2 = vec3(0.1, 0.2, 0.4);
+    color = mix(color, auroraColor1, aurora * 0.3);
+    color = mix(color, auroraColor2, aurora * 0.2);
+
+    // Mesh gradient highlights (ember)
+    vec2 emberPos = vec2(0.8, 0.2) + 0.1 * vec2(sin(u_time * 0.5), cos(u_time * 0.7));
+    float emberDist = length(uv - emberPos);
+    vec3 emberColor = vec3(1.0, 0.4, 0.2);
+    color += emberColor * (1.0 - smoothstep(0.0, 0.6, emberDist)) * 0.15;
+
+    // Interactive Mouse Highlight
+    float mouseDist = length(uv - mouse);
+    color += auroraColor1 * (1.0 - smoothstep(0.0, 0.4, mouseDist)) * 0.1;
+
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_3 -->
+<!-- Header / TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-border-glass">
+<nav class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop h-20 flex justify-between items-center">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">Kreta</span>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-body-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#servicios">Servicios</a>
+<a class="font-body-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#bifrost">BiFrost</a>
+<a class="font-body-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#equipo">Estudio</a>
+<a class="font-body-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#contacto">Contacto</a>
+</div>
+<a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all" href="#contacto">Comenzar</a>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-margin-mobile md:px-margin-desktop overflow-hidden" id="hero">
+<!-- Dot Grid Overlay -->
+<!-- STITCH_THREEJS_START:ANIMATION_2 class="absolute inset-0 w-full h-full opacity-30 pointer-events-none" -->
+<div class="absolute inset-0 w-full h-full opacity-30 pointer-events-none" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_2" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_2');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+container.appendChild(canvas);
+
+let dots = [];
+const spacing = 40;
+const radius = 1.5;
+let mouse = { x: -1000, y: -1000 };
+
+function init() {
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    dots = [];
+    for (let x = spacing / 2; x < width; x += spacing) {
+        for (let y = spacing / 2; y < height; y += spacing) {
+            dots.push({ x, y, baseSize: radius });
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    dots.forEach(dot => {
+        const dx = mouse.x - dot.x;
+        const dy = mouse.y - dot.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const maxDist = 150;
+        
+        let size = dot.baseSize;
+        let opacity = 0.15;
+        
+        if (dist < maxDist) {
+            const factor = 1 - dist / maxDist;
+            size = dot.baseSize + factor * 3;
+            opacity = 0.15 + factor * 0.6;
+        }
+        
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.fill();
+    });
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', init);
+container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+});
+
+init();
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_2 -->
+<div class="relative z-10 text-center max-w-4xl parallax-layer" data-speed="0.02">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6 leading-tight tracking-tight">
+                    Transformamos PyMEs con tecnología y datos.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">
+                    Estrategia financiera y soluciones digitales premium diseñadas para escalar la rentabilidad de tu negocio en la era digital.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-10 py-4 rounded-full shadow-lg shadow-primary/20 inner-glow-top hover:scale-105 transition-transform">
+                        Pedir propuesta
+                    </button>
+<button class="glass text-on-surface font-label-md text-label-md px-10 py-4 rounded-full hover:bg-white/5 transition-all">
+                        Ver BiFrost
+                    </button>
+</div>
+</div>
+</section>
+<!-- El Problema Section -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+<div class="grid md:grid-cols-3 gap-8">
+<div class="glass-card p-10 rounded-lg reveal">
+<span class="material-symbols-outlined text-cool-violet text-4xl mb-6">analytics</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Sin datos, sin control</h3>
+<p class="text-on-surface-variant">Decisiones basadas en la intuición en lugar de métricas reales. La ceguera operativa es el mayor riesgo para tu crecimiento.</p>
+</div>
+<div class="glass-card p-10 rounded-lg reveal" style="transition-delay: 100ms;">
+<span class="material-symbols-outlined text-ember-glow text-4xl mb-6">storefront</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Presencia que no vende</h3>
+<p class="text-on-surface-variant">Tener una web no es suficiente. Necesitas una plataforma optimizada para la conversión y la experiencia del usuario.</p>
+</div>
+<div class="glass-card p-10 rounded-lg reveal" style="transition-delay: 200ms;">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6">hourglass_empty</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Tiempo perdido</h3>
+<p class="text-on-surface-variant">Tareas manuales repetitivas que consumen el recurso más valioso de tu equipo. Automatizar es ganar libertad.</p>
+</div>
+</div>
+</section>
+<!-- Servicios Section -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest/50 backdrop-blur-sm" id="servicios">
+<div class="max-w-max-width mx-auto">
+<div class="mb-20">
+<span class="text-primary font-label-md text-label-md tracking-widest uppercase mb-4 block">Capacidades</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Soluciones Integrales</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Service cards -->
+<div class="glass-card p-8 rounded-lg group reveal">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary">web</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Landing Pages</h4>
+<p class="text-on-surface-variant text-sm">Diseños de alta conversión orientados a captar leads y ventas directas.</p>
+</div>
+<div class="glass-card p-8 rounded-lg group reveal">
+<div class="w-12 h-12 rounded-full bg-cool-violet/10 flex items-center justify-center mb-6 group-hover:bg-cool-violet/20 transition-colors">
+<span class="material-symbols-outlined text-cool-violet">shopping_cart</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">E-commerce</h4>
+<p class="text-on-surface-variant text-sm">Tiendas online robustas con integraciones de pago y logística fluidas.</p>
+</div>
+<div class="glass-card p-8 rounded-lg group reveal">
+<div class="w-12 h-12 rounded-full bg-ember-glow/10 flex items-center justify-center mb-6 group-hover:bg-ember-glow/20 transition-colors">
+<span class="material-symbols-outlined text-ember-glow">bolt</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Automatizaciones</h4>
+<p class="text-on-surface-variant text-sm">Conectamos tus herramientas para eliminar errores y ahorrar horas de trabajo.</p>
+</div>
+<div class="glass-card p-8 rounded-lg group reveal">
+<div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center mb-6 group-hover:bg-tertiary/20 transition-colors">
+<span class="material-symbols-outlined text-tertiary">chat</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Chatbot WhatsApp</h4>
+<p class="text-on-surface-variant text-sm">Atención 24/7 con IA configurada para responder y vender por vos.</p>
+</div>
+<div class="glass-card p-8 rounded-lg group reveal">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary">finance_mode</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Asesoría financiera</h4>
+<p class="text-on-surface-variant text-sm">Planificación estratégica para maximizar tus márgenes y flujo de caja.</p>
+</div>
+<div class="glass-card p-8 rounded-lg group reveal">
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 group-hover:bg-secondary/20 transition-colors">
+<span class="material-symbols-outlined text-secondary">point_of_sale</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">BiFrost POS</h4>
+<p class="text-on-surface-variant text-sm">Nuestro sistema de gestión exclusivo para comercios de alto rendimiento.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Highlight: BiFrost -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop overflow-hidden" id="bifrost">
+<div class="max-w-max-width mx-auto grid lg:grid-cols-2 gap-16 items-center">
+<div class="reveal">
+<span class="text-ember-glow font-label-md text-label-md tracking-widest uppercase mb-4 block">Producto Destacado</span>
+<h2 class="font-display-lg-mobile md:font-headline-md text-display-lg-mobile md:text-headline-md text-on-surface mb-8">BiFrost POS: La claridad que tu negocio necesita.</h2>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<div class="mt-1"><span class="material-symbols-outlined text-primary">check_circle</span></div>
+<div>
+<h5 class="font-bold text-on-surface">Monitoreo en tiempo real</h5>
+<p class="text-on-surface-variant text-sm">Ventas, stock y márgenes desde cualquier dispositivo.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<div class="mt-1"><span class="material-symbols-outlined text-primary">check_circle</span></div>
+<div>
+<h5 class="font-bold text-on-surface">Gestión Multi-Sucursal</h5>
+<p class="text-on-surface-variant text-sm">Control total de tu inventario unificado sin complicaciones.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<div class="mt-1"><span class="material-symbols-outlined text-primary">check_circle</span></div>
+<div>
+<h5 class="font-bold text-on-surface">Reportes Inteligentes</h5>
+<p class="text-on-surface-variant text-sm">Proyecciones de compra y análisis de productos estrella.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="relative reveal">
+<!-- Dashboard Mockup -->
+<div class="glass p-6 rounded-lg border border-white/10 relative z-10">
+<div class="flex justify-between items-center mb-8">
+<span class="font-bold text-on-surface text-sm">Dashboard General</span>
+<span class="text-[10px] text-on-surface-variant bg-white/5 px-2 py-1 rounded">Últimos 30 días</span>
+</div>
+<div class="grid grid-cols-3 gap-4 mb-8">
+<div class="p-4 bg-white/5 rounded-lg">
+<p class="text-[10px] text-on-surface-variant uppercase mb-1">Ventas</p>
+<p class="text-lg font-bold text-primary">$1.2M</p>
+</div>
+<div class="p-4 bg-white/5 rounded-lg">
+<p class="text-[10px] text-on-surface-variant uppercase mb-1">Margen</p>
+<p class="text-lg font-bold text-ember-glow">34%</p>
+</div>
+<div class="p-4 bg-white/5 rounded-lg">
+<p class="text-[10px] text-on-surface-variant uppercase mb-1">Ticket</p>
+<p class="text-lg font-bold text-tertiary">$12.4k</p>
+</div>
+</div>
+<div class="h-40 w-full bg-white/5 rounded-lg relative overflow-hidden flex items-end px-4 gap-1">
+<!-- Simple Animated Chart Bars -->
+<div class="bg-primary/60 w-full rounded-t" style="height: 40%"></div>
+<div class="bg-primary/60 w-full rounded-t" style="height: 65%"></div>
+<div class="bg-primary/60 w-full rounded-t" style="height: 50%"></div>
+<div class="bg-primary/60 w-full rounded-t" style="height: 80%"></div>
+<div class="bg-primary/60 w-full rounded-t" style="height: 45%"></div>
+<div class="bg-primary/60 w-full rounded-t" style="height: 90%"></div>
+<div class="bg-primary/60 w-full rounded-t" style="height: 75%"></div>
+</div>
+</div>
+<!-- Decorative back layers -->
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/10 rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-10 -left-10 w-64 h-64 bg-cool-violet/10 rounded-full blur-[100px]"></div>
+</div>
+</div>
+</section>
+<!-- Equipo Section -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto" id="equipo">
+<div class="mb-20 text-center">
+<span class="text-tertiary font-label-md text-label-md tracking-widest uppercase mb-4 block">El Estudio</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Mentes detrás de Kreta</h2>
+</div>
+<div class="grid md:grid-cols-4 gap-8">
+<div class="glass-card p-6 rounded-lg text-center group reveal">
+<div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden ring-2 ring-white/10 group-hover:ring-primary transition-all">
+<img class="w-full h-full object-cover" data-alt="Close-up professional studio portrait of a technology lead, minimalist lighting, deep charcoal and cool violet accents, sleek modern aesthetic, focused expression, cinematic sharp detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx94cHIV4DAng5JEdkx46odWAUnCIeeEFnK3o-8jaIwlElQQFsZYmNOZ1IYtabE23ra1HeSSvMsx1uAvmeF-55h--EZjOb5ertoWu_TYU9N4GYbrmwenlkpBJJONCrtk2cE7wknK3ei-c-Ubpl8romTr9PbVabp1GpzI8pEEKRcdF-RHu-fjwh5HOidI9Jes-0ujH6Aq7Cy8vFgJ7phTJqKxYnDEJty-rIbU_cLsXC-4p4CGbm7RQOVSGqeRrfqsvg4XETtouYd14"/>
+</div>
+<h5 class="text-lg font-bold text-on-surface">Facundo R.</h5>
+<p class="text-on-surface-variant text-sm mb-4">Founder &amp; Lead Dev</p>
+<div class="flex justify-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm hover:text-primary cursor-pointer">link</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-lg text-center group reveal" style="transition-delay: 100ms;">
+<div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden ring-2 ring-white/10 group-hover:ring-ember-glow transition-all">
+<img class="w-full h-full object-cover" data-alt="Professional studio portrait of a female finance strategist, minimalist editorial lighting, high contrast deep charcoal tones with subtle amber glow accents, authoritative and confident mood, ultra-sharp detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5C7UwBKfPSDv3FC_Z25TuWQCbtTmZogbkRRqKPs0CwUSOdpofyWm__FekGc4clbvRZ7HKfRhh5vLS1547YDO2Geey5uXoKTMFahh-zD8B38VU14EiXhMxY3W9N72nL23yT34f03q_T_CPqVhjjA8hgvCyxI18bG9wJzg75H1k-gGnKqkOYWcdJjbpXRrNR7lX83qOz_yF5aKxYvRTatQjnEHxoXTpOdKRsZO3vTlwgmoHd_g-V8IF0OeY4ccVECgJ6stpE1GgyxY"/>
+</div>
+<h5 class="text-lg font-bold text-on-surface">Valentina M.</h5>
+<p class="text-on-surface-variant text-sm mb-4">Financial Strategist</p>
+<div class="flex justify-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm hover:text-ember-glow cursor-pointer">link</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-lg text-center group reveal" style="transition-delay: 200ms;">
+<div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden ring-2 ring-white/10 group-hover:ring-cool-violet transition-all">
+<img class="w-full h-full object-cover" data-alt="Portrait of a creative UI designer, modern studio setup, soft purple atmospheric lighting, clean minimalist aesthetics, thoughtful expression, high-end production quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8jFOXWVrpbI9zo9dETPDAwzJ-KuO-NOrq0aXpanajDZ7QizkgYhrWMXQygDjSo1MO3QIa9iHJfyEgNFwKiuBiJ5zwvXIBGVDaRrEI5OdRELelNQ6VM_ICRGk19N1xsPhGwroeeQjWPpYoX0JK6N7ZoSljZrCpULKtx7Oi7qHd7YE30pD1C8o0nE4Rc-N2sAcNEheXr9LOsauCg9u-T7NeoNil9rAsOl23ddVuXffWedMowAE0NQycTQ8CbPaJ_ijKxvYFy87lrQ0"/>
+</div>
+<h5 class="text-lg font-bold text-on-surface">Santiago D.</h5>
+<p class="text-on-surface-variant text-sm mb-4">UI/UX Designer</p>
+<div class="flex justify-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm hover:text-cool-violet cursor-pointer">link</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-lg text-center group reveal" style="transition-delay: 300ms;">
+<div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden ring-2 ring-white/10 group-hover:ring-tertiary transition-all">
+<img class="w-full h-full object-cover" data-alt="Portrait of a data engineer, professional minimalist environment, sharp lighting, deep blacks and tech-focused aesthetic, sophisticated financial technology studio atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJeoVCCmvgXQVn2kqHJc1hWFF3N4khT3UNFdot6lzCcVn0plRGGsuF0cvmbxVR9_XxSwMlmOyb1uFfVl32q5cybGrgAhx4UbGEJY-A2Hnyt12G97N4DgfZ4zZRJPI_lj4J4IkWgdj0N5mzRqIbzOKwthN4T_z8ViaDrBSfCvyZW_hQ-sO0ahNb0g5UGeiQtuIRK4cfi7W4M9-gJJX0qoFQ_8v-00JDq3jVv8IPLY2W96IVqCDHyPXyf3UrvN68BtMqSKSg82NJlCU"/>
+</div>
+<h5 class="text-lg font-bold text-on-surface">Martín G.</h5>
+<p class="text-on-surface-variant text-sm mb-4">Data Analyst</p>
+<div class="flex justify-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm hover:text-tertiary cursor-pointer">link</span>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-2xl mx-auto">
+<h2 class="font-headline-md text-headline-md text-center text-on-surface mb-16">Preguntas frecuentes</h2>
+<div class="space-y-4">
+<details class="glass p-6 rounded-lg group reveal">
+<summary class="flex justify-between items-center cursor-pointer list-none font-bold text-on-surface">
+                        ¿Cómo es el proceso de trabajo?
+                        <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Comenzamos con una auditoría profunda de tu situación actual. Luego diseñamos una hoja de ruta personalizada combinando tecnología y estrategia financiera para asegurar el ROI.</p>
+</details>
+<details class="glass p-6 rounded-lg group reveal">
+<summary class="flex justify-between items-center cursor-pointer list-none font-bold text-on-surface">
+                        ¿Trabajan con empresas fuera de Argentina?
+                        <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Sí, operamos de forma remota para clientes en toda Latinoamérica y España, adaptándonos a las regulaciones impositivas y de mercado locales.</p>
+</details>
+<details class="glass p-6 rounded-lg group reveal">
+<summary class="flex justify-between items-center cursor-pointer list-none font-bold text-on-surface">
+                        ¿Qué incluye el soporte post-lanzamiento?
+                        <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Ofrecemos mantenimiento técnico, monitoreo de métricas mensual y optimización continua para asegurar que la solución siga escalando con tu negocio.</p>
+</details>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-low/30 backdrop-blur-md" id="contacto">
+<div class="max-w-max-width mx-auto grid lg:grid-cols-2 gap-16">
+<div class="reveal">
+<h2 class="font-display-lg-mobile md:font-headline-md text-display-lg-mobile md:text-headline-md text-on-surface mb-6">Hablemos de tu próximo salto.</h2>
+<p class="text-on-surface-variant mb-12">Estamos listos para transformar tus datos en dividendos y tu presencia online en una máquina de ventas.</p>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="text-on-surface">hola@kreta.studio</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-cool-violet">location_on</span>
+<span class="text-on-surface">Buenos Aires, Argentina</span>
+</div>
+</div>
+<a class="mt-12 inline-flex items-center gap-2 bg-emerald-600/20 text-emerald-400 border border-emerald-600/30 px-6 py-3 rounded-full hover:bg-emerald-600/30 transition-all font-label-md text-label-md" href="https://wa.me/">
+<span class="material-symbols-outlined">chat_bubble</span>
+                        Consultar por WhatsApp
+                    </a>
+</div>
+<div class="glass p-10 rounded-lg reveal">
+<form class="space-y-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Nombre completo</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary text-on-surface transition-colors" placeholder="Tu nombre" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Negocio</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary text-on-surface transition-colors" placeholder="Empresa S.A." type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Email</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary text-on-surface transition-colors" placeholder="email@ejemplo.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Mensaje</label>
+<textarea class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary text-on-surface transition-colors" placeholder="¿En qué podemos ayudarte?" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-lg hover:bg-primary-container transition-colors shadow-lg shadow-primary/10" type="submit">Enviar propuesta</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest py-20 border-t border-border-glass">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight mb-4 block">Kreta</span>
+<p class="text-on-surface-variant text-sm max-w-xs">Tecnología de vanguardia para la economía del mañana. Studio boutique de diseño, desarrollo y finanzas.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-12">
+<div>
+<h6 class="font-label-md text-label-md text-on-surface uppercase mb-6">Explorar</h6>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Servicios</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Proyectos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Estudio</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-label-md text-label-md text-on-surface uppercase mb-6">Producto</h6>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">BiFrost POS</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Precios</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Demo</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-label-md text-label-md text-on-surface uppercase mb-6">Social</h6>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-ember-glow transition-colors" href="#">LinkedIn</a></li>
+<li><a class="hover:text-ember-glow transition-colors" href="#">Instagram</a></li>
+<li><a class="hover:text-ember-glow transition-colors" href="#">Behance</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-4">
+<p class="text-label-sm text-label-sm text-on-surface-variant">© 2024 Kreta Studio. Todos los derechos reservados.</p>
+<div class="flex gap-8 text-label-sm text-label-sm text-on-surface-variant">
+<a class="hover:text-white transition-colors" href="#">Privacidad</a>
+<a class="hover:text-white transition-colors" href="#">Términos</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Reveal Animations on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Parallax Effect for Hero
+        document.addEventListener('mousemove', (e) => {
+            const layers = document.querySelectorAll('.parallax-layer');
+            const x = (window.innerWidth - e.pageX * 2) / 100;
+            const y = (window.innerHeight - e.pageY * 2) / 100;
+
+            layers.forEach(layer => {
+                const speed = layer.getAttribute('data-speed') || 0.05;
+                layer.style.transform = `translateX(${x * speed}rem) translateY(${y * speed}rem)`;
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body></html>

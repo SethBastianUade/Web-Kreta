@@ -1,49 +1,64 @@
 # Kreta Web — AGENTS.md
 
-## Project identity
+## Project
 
-Landing page for **Kreta** (tecnología + finanzas). Brand is Kreta, not "Web-Emprendimiento".
+Landing page for **Kreta** (tecnología + finanzas). Brand is **Kreta**, not "Web-Emprendimiento".
 
 ## Stack
 
-HTML + **Tailwind CSS (compilado, v3)** + vanilla JS. Estilo "Minimal Editorial"
-(monocromático, Noto Serif light, botones pill, bloques redondeados 20px), portado
-de un mockup de Stitch. **No Bootstrap, no frameworks JS.**
+HTML + **Tailwind CSS v3 (compiled)** + vanilla JS. No Bootstrap, no JS frameworks.
 
-- El CSS final se **compila** desde `assets/css/tailwind-src.css` → `assets/css/tailwind.css`.
-- `tailwind.css` **se commitea** para que el deploy siga siendo buildless (Cloudflare
-  Pages sirve estático, sin paso de build). `node_modules` está gitignoreado.
-- Tema (paleta M3 monocromática, fonts, fontSize) en `tailwind.config.js`.
+- CSS compiles from `assets/css/tailwind-src.css` → `assets/css/tailwind.css`.
+- `tailwind.css` **is committed** so Cloudflare Pages serves it buildless.
+- `node_modules` is gitignored.
+- **Tema "Aurora" oscuro** (dark) en todo el sitio: fondo casi negro, glassmorphism, acentos violeta + ember. Tokens/fonts/fontSize in `tailwind.config.js`.
+- Uses arbitrary values (`rounded-[100px]`, `rounded-[12px]`) — do NOT override `full` or circles break.
 
 ## Key files
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Landing principal en Tailwind (hero, servicios, BiFrost, equipo, FAQ, contacto) |
-| `secciones/*.html` | Subpáginas (servicios, nosotros, contacto), mismo stack y estilo que `index.html` |
-| `tailwind.config.js` | Tema (colores, fonts, fontSize) |
-| `assets/css/tailwind-src.css` | Entrada de Tailwind (`@tailwind` + animaciones: marquee, liquid-orb, reveal) |
-| `assets/css/tailwind.css` | **Generado** por `npm run build` — commiteado |
-| `assets/js/script.js` | Menú mobile, reveal al scroll (`[data-reveal]`), submit del form (Web3Forms) |
-| `assets/img/` | Imágenes + favicon |
+- `index.html` — landing principal (hero, el problema, servicios, BiFrost, FAQ, contacto). Sin sección equipo.
+- `secciones/servicios.html`, `nosotros.html`, `contacto.html` — subpáginas, same stack (nosotros SÍ tiene equipo real)
+- `tailwind.config.js` — theme. Tokens claros M3 (legacy) + tokens Aurora oscuros (`ink`, `cool-violet`, `violet-accent`, `violet-strong`, `on-violet`, `ember`) + fonts `garamond`/`grotesk`.
+- `assets/css/tailwind-src.css` — Tailwind directives + `.glass`/`.glass-card`/`.inner-glow-top` + scroll reveal + animaciones legacy (marquee, liquid-orb)
+- `assets/css/tailwind.css` — **generated**, committed
+- `assets/js/script.js` — mobile menu, scroll reveal (`[data-reveal]`), form submit (Web3Forms, AJAX)
+- `assets/js/hero-fx.js` — efectos del home oscuro: shader aurora/mesh (WebGL, `#aurora-shader`), dot grid interactivo (`#dot-grid`), mouse parallax (`.parallax-layer`). Cada efecto se autodesactiva si falta su elemento o con `prefers-reduced-motion`. Se incluye en todas las páginas (subpáginas solo usan el shader de fondo).
+- `stitch/` — export de referencia de Stitch (mockup + design_md). No se sirve.
+- `assets/img/` — images + favicon + OG image
+- `sitemap.xml` / `robots.txt` — SEO, served from root
+- `.assetsignore` — controls which files Cloudflare serves (excludes toolchain files)
 
 ## Commands
 
 ```bash
-npm install        # deps de build (Tailwind + plugin forms)
-npm run build      # compila tailwind-src.css → tailwind.css (minify)
-npm run watch      # recompila al guardar (dev)
+npm install        # deps: tailwindcss v3 + @tailwindcss/forms
+npm run build      # tailwind-src.css → tailwind.css (minify)
+npm run watch      # recompile on change
 ```
-Tras tocar clases en el HTML/JS, **rebuildear** (`npm run build`) y commitear el
-`tailwind.css` resultante. Previsualizar abriendo `index.html` en el browser.
+
+After editing HTML/JS: `npm run build`, then commit `tailwind.css`. Preview by opening any `.html` in browser.
 
 ## Design conventions
 
-- **Headings:** Noto Serif (serif), `font-light` (300). Subtítulos de tarjeta en 500.
-- **Body:** Manrope (sans-serif), 300–800.
-- **Paleta:** monocromática — `primary #000`, `secondary #5e5e5e`, `background #f9f9f9`,
-  bordes `outline-variant #cfc4c5`. Definida en `tailwind.config.js`.
-- **Botones:** pill (`rounded-[100px]`), sólidos `bg-primary text-on-primary`.
-- **Bloques de imagen / cards:** `rounded-[20px]`, borde `outline-variant`.
-- **Forms:** POST a `https://api.web3forms.com/submit` (Web3Forms), `access_key` en el form.
-- **WhatsApp:** `wa.me/5491173696380`.
+- **Tema Aurora (dark), todo el sitio.** `<html class="dark">`, `body` = `bg-ink font-grotesk text-white/90`.
+- **Headings:** EB Garamond (`font-garamond`), `font-normal` (400) — editorial.
+- **Body:** Hanken Grotesk (`font-grotesk`).
+- **Palette:** fondo `ink` `#0a0a0a` / `ink-soft` `#131313`. Acentos: `violet-accent` `#c5c0ff`
+  (primario), `cool-violet` `#9d85ff`, `ember` `#f2994a`. Texto: `white/90` · `white/60` · `white/40`.
+  Bordes: `white/10`. Botón texto: `on-violet` `#1e0090`.
+- **Nota tokens:** los tokens M3 claros (`primary`/`surface`/`secondary`/…) siguen en el config pero
+  YA NO se usan en las páginas (quedaron como legacy). El home usa los tokens Aurora nuevos + utilidades
+  `white/xx`. No mezclar: para superficies usar `.glass`/`.glass-card`, no `bg-surface-*`.
+- **Glass:** `.glass` (paneles estáticos) y `.glass-card` (con hover) en `tailwind-src.css`.
+- **Buttons:** pill (`rounded-[100px]`/`rounded-full`), primario `bg-violet-accent text-on-violet`.
+- **Cards:** `.glass`/`.glass-card` + `rounded-lg`. Inputs: `bg-white/5 border-white/10`.
+- **Form:** POST to `https://api.web3forms.com/submit`, `access_key` in hidden input, `class="contact-form"`
+  + `.form-note` para el estado. Submission AJAX via `script.js` (no page reload).
+- **WhatsApp:** `wa.me/5491173696380`
+- **BiFrost demo:** `https://demo.bifrost-software.com.ar/login` (demo@test.com / demo123)
+- **Dominio:** `kreta.com.ar`
+- **OG image:** `assets/img/og-image.svg`
+
+## Deploy
+
+Cloudflare Pages — static, no build step. Push to main, compiled `tailwind.css` is served.

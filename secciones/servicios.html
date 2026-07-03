@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es-AR" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,107 +8,117 @@
   <meta property="og:title" content="Servicios Web y Financieros — Kreta">
   <meta property="og:description" content="Detalle completo de nuestras soluciones digitales y financieras en Kreta: desarrollo web, automatizaciones, chatbots, POS BiFrost y consultoría.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://kreta.tech/secciones/servicios.html">
-  <meta property="og:image" content="https://kreta.tech/og-image.jpg">
+  <meta property="og:url" content="https://kreta.com.ar/secciones/servicios.html">
+  <meta property="og:image" content="https://kreta.com.ar/assets/img/og-image.svg">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Noto+Serif:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/tailwind.css">
   <style>
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   </style>
 </head>
-<body class="selection:bg-primary/10 selection:text-primary">
+<body class="bg-ink font-grotesk text-white/90 antialiased selection:bg-cool-violet selection:text-white">
+
+  <!-- ─── Fondo: shader aurora + mesh ─── -->
+  <div class="fixed inset-0 -z-10 h-full w-full opacity-40" aria-hidden="true">
+    <canvas id="aurora-shader" class="block h-full w-full"></canvas>
+  </div>
 
   <!-- ─── Floating WhatsApp ─── -->
-  <a class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-[100px] bg-primary px-4 py-3 text-xs font-semibold text-on-primary shadow-2xl transition-transform duration-300 hover:-translate-y-0.5"
+  <a class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-[100px] bg-violet-accent px-4 py-3 text-xs font-semibold text-on-violet shadow-2xl shadow-violet-accent/20 transition-transform duration-300 hover:-translate-y-0.5"
     href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20de%20Kreta" target="_blank" rel="noopener noreferrer" aria-label="Hablar por WhatsApp">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     WhatsApp
   </a>
 
   <!-- ─── Header ─── -->
-  <header class="sticky top-0 z-40 border-b border-outline-variant/60 bg-background/80 backdrop-blur-xl" id="top">
-    <div class="mx-auto flex max-w-container items-center justify-between px-5 py-4">
-      <a class="font-serif text-2xl font-semibold tracking-tight text-primary" href="../index.html">Kreta<span class="text-on-primary-container">.</span></a>
+  <header class="fixed top-0 z-40 w-full border-b border-white/10 bg-white/[0.03] backdrop-blur-xl" id="top">
+    <div class="mx-auto flex h-20 max-w-container items-center justify-between px-5 md:px-margin-page">
+      <a class="font-garamond text-2xl font-semibold tracking-tight text-white" href="../index.html">Kreta</a>
       <nav class="hidden items-center gap-8 md:flex" aria-label="Principal">
-        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="../index.html#saas">BiFrost POS</a>
-        <a class="text-sm font-medium text-primary" href="servicios.html" aria-current="page">Servicios</a>
-        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="nosotros.html">Nosotros</a>
-        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="contacto.html">Contacto</a>
-        <a class="inline-flex items-center rounded-[100px] bg-primary px-5 py-2.5 text-xs font-semibold text-on-primary transition-all duration-300 hover:bg-primary/90" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">Pedir propuesta</a>
+        <a class="text-sm font-medium text-violet-accent" href="servicios.html" aria-current="page">Servicios</a>
+        <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="../index.html#bifrost">BiFrost</a>
+        <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="nosotros.html">Nosotros</a>
+        <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="../index.html#faq">FAQ</a>
+        <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="contacto.html">Contacto</a>
       </nav>
+      <a class="hidden items-center rounded-[100px] bg-violet-accent px-5 py-2.5 text-xs font-semibold text-on-violet transition-transform hover:scale-105 active:scale-95 md:inline-flex" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">Pedir propuesta</a>
       <button class="inline-flex flex-col gap-1.5 p-2 md:hidden" type="button" data-menu-toggle aria-label="Abrir menú" aria-expanded="false">
-        <span class="block h-px w-6 bg-primary"></span><span class="block h-px w-6 bg-primary"></span><span class="block h-px w-6 bg-primary"></span>
+        <span class="block h-px w-6 bg-white"></span><span class="block h-px w-6 bg-white"></span><span class="block h-px w-6 bg-white"></span>
       </button>
     </div>
-    <div class="hidden border-t border-outline-variant/60 bg-background px-5 py-4 md:hidden" data-menu>
+    <div class="hidden border-t border-white/10 bg-ink/95 px-5 py-4 backdrop-blur-xl md:hidden" data-menu>
       <div class="flex flex-col gap-4">
-        <a class="text-sm font-medium text-secondary hover:text-primary" href="../index.html#saas">BiFrost POS</a>
-        <a class="text-sm font-medium text-secondary hover:text-primary" href="servicios.html">Servicios</a>
-        <a class="text-sm font-medium text-secondary hover:text-primary" href="nosotros.html">Nosotros</a>
-        <a class="text-sm font-medium text-secondary hover:text-primary" href="contacto.html">Contacto</a>
-        <a class="inline-flex w-fit items-center rounded-[100px] bg-primary px-5 py-2.5 text-xs font-semibold text-on-primary" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">Pedir propuesta</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="servicios.html">Servicios</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="../index.html#bifrost">BiFrost</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="nosotros.html">Nosotros</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="../index.html#faq">FAQ</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="contacto.html">Contacto</a>
+        <a class="inline-flex w-fit items-center rounded-[100px] bg-violet-accent px-5 py-2.5 text-xs font-semibold text-on-violet" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">Pedir propuesta</a>
       </div>
     </div>
   </header>
 
-  <main>
+  <main class="pt-20">
     <!-- ─── Hero ─── -->
-    <section class="border-b border-outline-variant px-5 pb-16 pt-20">
-      <div class="mx-auto max-w-container">
-        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Nuestra oferta</span>
-        <h1 class="mt-4 max-w-3xl font-serif text-4xl font-light leading-tight tracking-tight text-primary md:text-6xl">Nuestras soluciones en detalle</h1>
-        <p class="mt-5 max-w-2xl text-base font-light leading-relaxed text-secondary">Tecnología de punta y estrategia financiera sólida, diseñadas específicamente para impulsar el crecimiento de PyMEs y comercios.</p>
+    <section class="px-5 pb-16 pt-16 md:px-margin-page">
+      <div class="mx-auto max-w-container" data-reveal>
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-violet-accent">Nuestra oferta</span>
+        <h1 class="mt-4 max-w-3xl font-garamond text-5xl font-normal leading-tight tracking-tight text-white md:text-7xl">Nuestras soluciones en detalle</h1>
+        <p class="mt-5 max-w-2xl text-lg font-light leading-relaxed text-white/60">Tecnología de punta y estrategia financiera sólida, diseñadas específicamente para impulsar el crecimiento de PyMEs y comercios.</p>
       </div>
     </section>
 
     <!-- ─── Soluciones Financieras ─── -->
-    <section class="px-5 py-20">
+    <section class="px-5 py-20 md:px-margin-page">
       <div class="mx-auto max-w-container">
-        <div class="mb-4 max-w-2xl">
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Producto principal</span>
-          <h2 class="mt-4 font-serif text-3xl font-light leading-tight tracking-tight text-primary md:text-4xl">Herramientas y estrategia para maximizar la rentabilidad</h2>
+        <div class="mb-4 max-w-2xl" data-reveal>
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-violet-accent">Producto principal</span>
+          <h2 class="mt-4 font-garamond text-3xl font-normal leading-tight tracking-tight text-white md:text-4xl">Herramientas y estrategia para maximizar la rentabilidad</h2>
         </div>
 
-        <div class="grid items-center gap-8 border-t border-outline-variant py-12 lg:grid-cols-12">
+        <div class="grid items-center gap-8 border-t border-white/10 py-12 lg:grid-cols-12" data-reveal>
           <div class="lg:col-span-7">
-            <h3 class="font-serif text-2xl font-light tracking-tight text-primary">BiFrost — Análisis en punto de venta</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">BiFrost es un software de facturación y punto de venta con inteligencia financiera nativa. A diferencia de los POS básicos que solo registran facturas, cruza tus datos de ventas con tus costos cargados para entregarte márgenes brutos, ticket promedio y proyecciones de flujo de caja del mes corriente de forma automática.</p>
+            <h3 class="font-garamond text-2xl font-normal tracking-tight text-white">BiFrost — Análisis en punto de venta</h3>
+            <p class="mt-3 text-[15px] font-light leading-relaxed text-white/60">BiFrost es un software de facturación y punto de venta con inteligencia financiera nativa. A diferencia de los POS básicos que solo registran facturas, cruza tus datos de ventas con tus costos cargados para entregarte márgenes brutos, ticket promedio y proyecciones de flujo de caja del mes corriente de forma automática.</p>
             <ul class="mt-6 grid gap-2.5">
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Visualización en tiempo real de ingresos y margen bruto</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Proyecciones de tendencia y alertas de desvíos en el presupuesto</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Reportes ejecutivos listos para enviar a contadores o socios</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Visualización en tiempo real de ingresos y margen bruto</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Proyecciones de tendencia y alertas de desvíos en el presupuesto</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Reportes ejecutivos listos para enviar a contadores o socios</li>
             </ul>
           </div>
           <div class="lg:col-span-5">
-            <div class="rounded-[20px] border border-outline-variant bg-surface-container-low p-6 text-center">
-              <span class="inline-flex rounded-[100px] bg-primary px-3 py-1 text-xs font-semibold text-on-primary">Producto propio</span>
-              <h4 class="mt-3 text-base font-medium text-primary">BiFrost POS — Demo</h4>
-              <p class="mt-2 text-sm font-light leading-relaxed text-secondary">Accedé a la interfaz real para ver cómo luce la herramienta y sus gráficos financieros.</p>
-              <p class="mt-2 text-xs text-on-primary-container">Usuario: demo@test.com · Contraseña: demo123</p>
-              <a class="mt-4 inline-flex items-center rounded-[100px] border border-primary px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-on-primary" href="https://demo.bifrost-software.com.ar/login" target="_blank" rel="noopener noreferrer">Ingresar a la demo →</a>
+            <div class="glass rounded-lg p-6 text-center">
+              <span class="inline-flex rounded-[100px] bg-violet-accent px-3 py-1 text-xs font-semibold text-on-violet">Producto propio</span>
+              <h4 class="mt-3 text-base font-medium text-white">BiFrost POS — Demo</h4>
+              <p class="mt-2 text-sm font-light leading-relaxed text-white/60">Accedé a la interfaz real para ver cómo luce la herramienta y sus gráficos financieros.</p>
+              <p class="mt-2 text-xs text-white/40">Usuario: demo@test.com · Contraseña: demo123</p>
+              <a class="mt-4 inline-flex items-center rounded-[100px] border border-violet-accent px-5 py-2.5 text-sm font-semibold text-violet-accent transition-colors hover:bg-violet-accent hover:text-on-violet" href="https://demo.bifrost-software.com.ar/login" target="_blank" rel="noopener noreferrer">Ingresar a la demo →</a>
             </div>
           </div>
         </div>
 
-        <div class="grid items-center gap-8 border-t border-outline-variant py-12 lg:grid-cols-12">
+        <div class="grid items-center gap-8 border-t border-white/10 py-12 lg:grid-cols-12" data-reveal>
           <div class="lg:col-span-7">
-            <h3 class="font-serif text-2xl font-light tracking-tight text-primary">Asesoramiento financiero profesional</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Consultoría financiera aplicada a negocios reales. Con el soporte de un analista especializado, te ayudamos a auditar tu estructura de costos, armar tu flujo de caja real, diseñar políticas de precios eficientes y planificar el crecimiento de tu capital de forma segura.</p>
+            <h3 class="font-garamond text-2xl font-normal tracking-tight text-white">Asesoramiento financiero profesional</h3>
+            <p class="mt-3 text-[15px] font-light leading-relaxed text-white/60">Consultoría financiera aplicada a negocios reales. Con el soporte de un analista especializado, te ayudamos a auditar tu estructura de costos, armar tu flujo de caja real, diseñar políticas de precios eficientes y planificar el crecimiento de tu capital de forma segura.</p>
             <ul class="mt-6 grid gap-2.5">
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Auditoría completa de costos fijos y variables</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Planificación de presupuestos anuales y mensuales</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Análisis de punto de equilibrio y retorno de inversión (ROI)</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Auditoría completa de costos fijos y variables</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Planificación de presupuestos anuales y mensuales</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Análisis de punto de equilibrio y retorno de inversión (ROI)</li>
             </ul>
           </div>
           <div class="lg:col-span-5">
-            <div class="rounded-[20px] border border-outline-variant bg-surface-container-low p-6 text-center">
-              <span class="inline-flex rounded-[100px] border border-outline-variant px-3 py-1 text-xs font-semibold text-secondary">Estrategia</span>
-              <h4 class="mt-3 text-base font-medium text-primary">Planificación de crecimiento</h4>
-              <p class="mt-2 text-sm font-light leading-relaxed text-secondary">Estructuramos un plan financiero que te permita financiar tu expansión comercial con tu propio flujo de operaciones.</p>
+            <div class="glass rounded-lg p-6 text-center">
+              <span class="inline-flex rounded-[100px] border border-white/20 px-3 py-1 text-xs font-semibold text-white/70">Estrategia</span>
+              <h4 class="mt-3 text-base font-medium text-white">Planificación de crecimiento</h4>
+              <p class="mt-2 text-sm font-light leading-relaxed text-white/60">Estructuramos un plan financiero que te permita financiar tu expansión comercial con tu propio flujo de operaciones.</p>
             </div>
           </div>
         </div>
@@ -116,66 +126,66 @@
     </section>
 
     <!-- ─── Soluciones Digitales ─── -->
-    <section class="border-t border-outline-variant bg-surface-container-low px-5 py-20">
+    <section class="border-y border-white/5 bg-ink-soft/40 px-5 py-20 backdrop-blur-sm md:px-margin-page">
       <div class="mx-auto max-w-container">
-        <div class="mb-4 max-w-2xl">
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Servicios complementarios</span>
-          <h2 class="mt-4 font-serif text-3xl font-light leading-tight tracking-tight text-primary md:text-4xl">Tecnología orientada a la venta y la optimización</h2>
+        <div class="mb-4 max-w-2xl" data-reveal>
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-violet-accent">Servicios complementarios</span>
+          <h2 class="mt-4 font-garamond text-3xl font-normal leading-tight tracking-tight text-white md:text-4xl">Tecnología orientada a la venta y la optimización</h2>
         </div>
 
-        <div class="grid items-center gap-8 border-t border-outline-variant py-12 lg:grid-cols-12">
+        <div class="grid items-center gap-8 border-t border-white/10 py-12 lg:grid-cols-12" data-reveal>
           <div class="lg:col-span-7">
-            <h3 class="font-serif text-2xl font-light tracking-tight text-primary">Landing pages de alta conversión</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Diseñamos páginas de aterrizaje optimizadas para un solo objetivo: convertir visitantes en leads calificados, llamadas o mensajes de WhatsApp. Sin plantillas infladas: cada sección sigue un orden psicológico para maximizar las consultas.</p>
+            <h3 class="font-garamond text-2xl font-normal tracking-tight text-white">Landing pages de alta conversión</h3>
+            <p class="mt-3 text-[15px] font-light leading-relaxed text-white/60">Diseñamos páginas de aterrizaje optimizadas para un solo objetivo: convertir visitantes en leads calificados, llamadas o mensajes de WhatsApp. Sin plantillas infladas: cada sección sigue un orden psicológico para maximizar las consultas.</p>
             <ul class="mt-6 grid gap-2.5">
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Optimización de velocidad (Lighthouse SEO/Performance ≥ 90)</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Copywriting orientado a derribar objeciones específicas</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Diseño adaptativo mobile-first impecable</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Optimización de velocidad (Lighthouse SEO/Performance ≥ 90)</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Copywriting orientado a derribar objeciones específicas</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Diseño adaptativo mobile-first impecable</li>
             </ul>
           </div>
           <div class="lg:col-span-5">
-            <div class="rounded-[20px] border border-outline-variant bg-surface-container-lowest p-6 text-center">
-              <span class="inline-flex rounded-[100px] border border-outline-variant px-3 py-1 text-xs font-semibold text-secondary">Caso de éxito</span>
-              <h4 class="mt-3 text-base font-medium text-primary">Estudio contable local</h4>
-              <p class="mt-2 text-sm font-light leading-relaxed text-secondary">Rediseñamos su landing de servicios corporativos y aumentamos sus leads por WhatsApp un +42% en el primer mes.</p>
+            <div class="glass rounded-lg p-6 text-center">
+              <span class="inline-flex rounded-[100px] border border-white/20 px-3 py-1 text-xs font-semibold text-white/70">Caso de éxito</span>
+              <h4 class="mt-3 text-base font-medium text-white">Estudio contable local</h4>
+              <p class="mt-2 text-sm font-light leading-relaxed text-white/60">Rediseñamos su landing de servicios corporativos y aumentamos sus leads por WhatsApp un +42% en el primer mes.</p>
             </div>
           </div>
         </div>
 
-        <div class="grid items-center gap-8 border-t border-outline-variant py-12 lg:grid-cols-12">
+        <div class="grid items-center gap-8 border-t border-white/10 py-12 lg:grid-cols-12" data-reveal>
           <div class="lg:col-span-7">
-            <h3 class="font-serif text-2xl font-light tracking-tight text-primary">Tiendas online (e-commerce)</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Tiendas virtuales optimizadas para que el proceso de compra sea rápido y sin fricciones. Integramos pasarelas de pago locales y envíos dinámicos, dándote control absoluto sobre catálogo, stock y clientes.</p>
+            <h3 class="font-garamond text-2xl font-normal tracking-tight text-white">Tiendas online (e-commerce)</h3>
+            <p class="mt-3 text-[15px] font-light leading-relaxed text-white/60">Tiendas virtuales optimizadas para que el proceso de compra sea rápido y sin fricciones. Integramos pasarelas de pago locales y envíos dinámicos, dándote control absoluto sobre catálogo, stock y clientes.</p>
             <ul class="mt-6 grid gap-2.5">
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Integración con MercadoPago y pasarelas bancarias</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Panel autogestionable simple para el control de stock</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Checkout simplificado para reducir carritos abandonados</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Integración con MercadoPago y pasarelas bancarias</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Panel autogestionable simple para el control de stock</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Checkout simplificado para reducir carritos abandonados</li>
             </ul>
           </div>
           <div class="lg:col-span-5">
-            <div class="rounded-[20px] border border-outline-variant bg-surface-container-lowest p-6 text-center">
-              <span class="inline-flex rounded-[100px] border border-outline-variant px-3 py-1 text-xs font-semibold text-secondary">Caso de éxito</span>
-              <h4 class="mt-3 text-base font-medium text-primary">Distribuidora mayorista</h4>
-              <p class="mt-2 text-sm font-light leading-relaxed text-secondary">Implementamos un catálogo interactivo B2B que redujo la toma de pedidos manuales de 3 horas a 20 minutos diarios.</p>
+            <div class="glass rounded-lg p-6 text-center">
+              <span class="inline-flex rounded-[100px] border border-white/20 px-3 py-1 text-xs font-semibold text-white/70">Caso de éxito</span>
+              <h4 class="mt-3 text-base font-medium text-white">Distribuidora mayorista</h4>
+              <p class="mt-2 text-sm font-light leading-relaxed text-white/60">Implementamos un catálogo interactivo B2B que redujo la toma de pedidos manuales de 3 horas a 20 minutos diarios.</p>
             </div>
           </div>
         </div>
 
-        <div class="grid items-center gap-8 border-t border-outline-variant py-12 lg:grid-cols-12">
+        <div class="grid items-center gap-8 border-t border-white/10 py-12 lg:grid-cols-12" data-reveal>
           <div class="lg:col-span-7">
-            <h3 class="font-serif text-2xl font-light tracking-tight text-primary">Automatizaciones y chatbots de WhatsApp</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Flujos y asistentes virtuales para tu WhatsApp Business que filtran consultas, responden preguntas frecuentes las 24 horas y agendan reuniones de forma autónoma. Conectamos tus formularios con hojas de cálculo y CRM automáticamente.</p>
+            <h3 class="font-garamond text-2xl font-normal tracking-tight text-white">Automatizaciones y chatbots de WhatsApp</h3>
+            <p class="mt-3 text-[15px] font-light leading-relaxed text-white/60">Flujos y asistentes virtuales para tu WhatsApp Business que filtran consultas, responden preguntas frecuentes las 24 horas y agendan reuniones de forma autónoma. Conectamos tus formularios con hojas de cálculo y CRM automáticamente.</p>
             <ul class="mt-6 grid gap-2.5">
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Calificación automática de leads antes de pasarlos a un asesor</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Sincronización automática entre web, WhatsApp y CRM</li>
-              <li class="flex items-start gap-2 text-sm font-light text-secondary"><span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">check</span>Respuestas automatizadas sin costos fijos abusivos</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Calificación automática de leads antes de pasarlos a un asesor</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Sincronización automática entre web, WhatsApp y CRM</li>
+              <li class="flex items-start gap-2 text-sm font-light text-white/60"><span class="material-symbols-outlined mt-0.5 text-[18px] text-violet-accent">check</span>Respuestas automatizadas sin costos fijos abusivos</li>
             </ul>
           </div>
           <div class="lg:col-span-5">
-            <div class="rounded-[20px] border border-outline-variant bg-surface-container-lowest p-6 text-center">
-              <span class="inline-flex rounded-[100px] border border-outline-variant px-3 py-1 text-xs font-semibold text-secondary">Caso de éxito</span>
-              <h4 class="mt-3 text-base font-medium text-primary">Centro odontológico</h4>
-              <p class="mt-2 text-sm font-light leading-relaxed text-secondary">Instalamos un chatbot que gestiona turnos automáticamente, confirmando el 94% de las citas sin intervención humana.</p>
+            <div class="glass rounded-lg p-6 text-center">
+              <span class="inline-flex rounded-[100px] border border-white/20 px-3 py-1 text-xs font-semibold text-white/70">Caso de éxito</span>
+              <h4 class="mt-3 text-base font-medium text-white">Centro odontológico</h4>
+              <p class="mt-2 text-sm font-light leading-relaxed text-white/60">Instalamos un chatbot que gestiona turnos automáticamente, confirmando el 94% de las citas sin intervención humana.</p>
             </div>
           </div>
         </div>
@@ -183,39 +193,41 @@
     </section>
 
     <!-- ─── CTA ─── -->
-    <section class="px-5 py-20">
+    <section class="px-5 py-20 md:px-margin-page">
       <div class="mx-auto max-w-container">
-        <div class="flex flex-col items-start gap-6 rounded-[20px] border border-outline-variant bg-surface-container-low p-10 md:flex-row md:items-center md:justify-between">
+        <div class="glass flex flex-col items-start gap-6 rounded-lg p-10 md:flex-row md:items-center md:justify-between" data-reveal>
           <div class="max-w-xl">
-            <h2 class="font-serif text-3xl font-light leading-tight tracking-tight text-primary">¿Cuál de estas soluciones necesita tu negocio?</h2>
-            <p class="mt-3 text-base font-light leading-relaxed text-secondary">Contanos tu caso y te armamos una propuesta a medida en menos de 24 horas.</p>
+            <h2 class="font-garamond text-3xl font-normal leading-tight tracking-tight text-white">¿Cuál de estas soluciones necesita tu negocio?</h2>
+            <p class="mt-3 text-base font-light leading-relaxed text-white/60">Contanos tu caso y te armamos una propuesta a medida en menos de 24 horas.</p>
           </div>
-          <a class="inline-flex shrink-0 items-center rounded-[100px] bg-primary px-7 py-3 text-sm font-semibold text-on-primary transition-all duration-300 hover:bg-primary/90" href="contacto.html">Pedir propuesta</a>
+          <a class="inline-flex shrink-0 items-center rounded-[100px] bg-violet-accent px-7 py-3 text-sm font-semibold text-on-violet transition-transform hover:scale-105" href="contacto.html">Pedir propuesta</a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- ─── Footer ─── -->
-  <footer class="border-t border-outline-variant px-5 py-14">
+  <footer class="border-t border-white/10 bg-ink-soft/60 px-5 py-14 md:px-margin-page">
     <div class="mx-auto max-w-container">
       <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div class="max-w-sm">
-          <a class="font-serif text-2xl font-semibold tracking-tight text-primary" href="../index.html">Kreta<span class="text-on-primary-container">.</span></a>
-          <p class="mt-4 text-sm font-light leading-relaxed text-secondary">Tecnología y finanzas para hacer crecer negocios reales.</p>
-          <p class="mt-3 text-sm text-secondary">contacto@kreta.tech</p>
+          <a class="font-garamond text-2xl font-semibold tracking-tight text-white" href="../index.html">Kreta</a>
+          <p class="mt-4 text-sm font-light leading-relaxed text-white/60">Tecnología y finanzas para hacer crecer negocios reales.</p>
+          <p class="mt-3 text-sm text-white/60">contacto@kreta.com.ar</p>
         </div>
         <nav class="flex flex-col gap-3 md:items-end" aria-label="Pie de página">
-          <a class="text-sm text-secondary transition-colors hover:text-primary" href="../index.html#saas">BiFrost POS</a>
-          <a class="text-sm text-secondary transition-colors hover:text-primary" href="servicios.html">Servicios</a>
-          <a class="text-sm text-secondary transition-colors hover:text-primary" href="nosotros.html">Nosotros</a>
-          <a class="text-sm text-secondary transition-colors hover:text-primary" href="contacto.html">Contacto</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="../index.html#bifrost">BiFrost POS</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="servicios.html">Servicios</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="nosotros.html">Nosotros</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="../index.html#faq">Preguntas frecuentes</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="contacto.html">Contacto</a>
         </nav>
       </div>
-      <div class="mt-12 border-t border-outline-variant pt-6 text-xs text-on-primary-container">Argentina · © 2026 Kreta</div>
+      <div class="mt-12 border-t border-white/5 pt-6 text-xs text-white/40">Argentina · © 2026 Kreta</div>
     </div>
   </footer>
 
-  <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/script.js" defer></script>
+  <script src="../assets/js/hero-fx.js" defer></script>
 </body>
 </html>

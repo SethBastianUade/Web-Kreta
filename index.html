@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es-AR" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +11,16 @@
   <meta property="og:title" content="Kreta — BiFrost POS y Soluciones para PyMEs">
   <meta property="og:description" content="Descubrí BiFrost, el POS con inteligencia financiera para PyMEs. Además, impulsamos tu crecimiento con landing pages, automatizaciones, chatbots y asesoría financiera.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://kreta.tech">
-  <meta property="og:image" content="https://kreta.tech/og-image.jpg">
+  <meta property="og:url" content="https://kreta.com.ar">
+  <meta property="og:image" content="https://kreta.com.ar/assets/img/og-image.svg">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Noto+Serif:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   >
   <link
@@ -28,16 +31,61 @@
   <style>
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Kreta",
+    "url": "https://kreta.com.ar",
+    "description": "Tecnología y finanzas para PyMEs. Creamos landing pages, automatizaciones, chatbots, y ofrecemos BiFrost POS con inteligencia financiera.",
+    "email": "contacto@kreta.com.ar",
+    "foundingDate": "2025",
+    "knowsAbout": ["Desarrollo de software", "Finanzas corporativas", "POS", "Automatización", "Chatbots"],
+    "sameAs": ["https://wa.me/5491173696380"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "BiFrost",
+    "description": "POS con inteligencia financiera integrada. Proyecta flujo de caja, calcula márgenes brutos y genera reportes ejecutivos automáticamente.",
+    "url": "https://kreta.com.ar/#bifrost",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "ARS",
+      "description": "Consultar precio"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿Qué es exactamente Kreta?", "acceptedAnswer": { "@type": "Answer", "text": "Kreta combina desarrollo de software profesional y análisis financiero corporativo. Ayudamos a comercios y PyMEs a escalar automatizando sus ventas e integrando métricas reales para decidir mejor." } },
+      { "@type": "Question", "name": "¿Cómo se combinan tecnología y finanzas?", "acceptedAnswer": { "@type": "Answer", "text": "Creamos tus canales de venta digitales (web, chatbot, e-commerce) y conectamos tu operación con BiFrost para que tengas proyecciones financieras y flujo de caja en tiempo real. Las agencias solo programan; los consultores solo hacen Excel. Nosotros unimos ambos." } },
+      { "@type": "Question", "name": "¿Tengo que contratar ambos servicios?", "acceptedAnswer": { "@type": "Answer", "text": "No. Podés tomar solo desarrollo web/automatizaciones, solo asesoramiento financiero, o usar BiFrost de forma independiente. El mayor impacto se logra combinándolos." } },
+      { "@type": "Question", "name": "¿Qué es BiFrost y cómo se integra?", "acceptedAnswer": { "@type": "Answer", "text": "BiFrost es nuestro POS con análisis financiero integrado. No solo registra ventas: proyecta tu flujo de caja, calcula márgenes brutos y netos automáticamente y genera reportes ejecutivos." } },
+      { "@type": "Question", "name": "¿Cuánto tarda un proyecto web o automatización?", "acceptedAnswer": { "@type": "Answer", "text": "Una landing o chatbot básico: 10 a 15 días hábiles. Un e-commerce o automatización compleja: 3 a 5 semanas. Siempre con cronograma claro y entregas semanales." } },
+      { "@type": "Question", "name": "¿Cómo empezamos?", "acceptedAnswer": { "@type": "Answer", "text": "Con una charla de diagnóstico sin costo. Nos contás de tu negocio, analizamos tus necesidades y te enviamos una propuesta en menos de 24 horas. Escribinos por WhatsApp o completá el formulario." } }
+    ]
+  }
+  </script>
 </head>
-<body class="selection:bg-primary/10 selection:text-primary">
+<body class="bg-ink font-grotesk text-white/90 antialiased selection:bg-cool-violet selection:text-white">
+
+  <!-- ─── Fondo: shader aurora + mesh (WebGL, en hero-fx.js) ─── -->
+  <div class="fixed inset-0 -z-10 h-full w-full opacity-40" aria-hidden="true">
+    <canvas id="aurora-shader" class="block h-full w-full"></canvas>
+  </div>
 
   <!-- ─── Floating WhatsApp ─── -->
   <a
-    class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-[100px] bg-primary px-4 py-3 text-xs font-semibold text-on-primary shadow-2xl transition-transform duration-300 hover:-translate-y-0.5"
+    class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-[100px] bg-violet-accent px-4 py-3 text-xs font-semibold text-on-violet shadow-2xl shadow-violet-accent/20 transition-transform duration-300 hover:-translate-y-0.5"
     href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20Kreta"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Hablar por WhatsApp"
+    target="_blank" rel="noopener noreferrer" aria-label="Hablar por WhatsApp"
   >
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -46,518 +94,330 @@
   </a>
 
   <!-- ─── Header ─── -->
-  <header class="sticky top-0 z-40 border-b border-outline-variant/60 bg-background/80 backdrop-blur-xl" id="top">
-    <div class="mx-auto flex max-w-container items-center justify-between px-5 py-4">
-      <a class="font-serif text-2xl font-semibold tracking-tight text-primary" href="index.html">Kreta<span class="text-on-primary-container">.</span></a>
+  <header class="fixed top-0 z-40 w-full border-b border-white/10 bg-white/[0.03] backdrop-blur-xl" id="top">
+    <div class="mx-auto flex h-20 max-w-container items-center justify-between px-5 md:px-margin-page">
+      <a class="font-garamond text-2xl font-semibold tracking-tight text-white" href="index.html">Kreta</a>
 
       <nav class="hidden items-center gap-8 md:flex" aria-label="Principal">
-        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="#saas">BiFrost POS</a>
-        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="secciones/servicios.html">Servicios</a>
-        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="secciones/nosotros.html">Nosotros</a>
-        <a class="text-sm font-medium text-secondary transition-colors hover:text-primary" href="secciones/contacto.html">Contacto</a>
-        <a
-          class="inline-flex items-center rounded-[100px] bg-primary px-5 py-2.5 text-xs font-semibold text-on-primary transition-all duration-300 hover:bg-primary/90"
-          href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta"
-          target="_blank" rel="noopener noreferrer"
-        >Pedir propuesta</a>
+        <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="secciones/servicios.html">Servicios</a>
+        <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="#bifrost">BiFrost</a>
+        <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="secciones/nosotros.html">Nosotros</a>
+        <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="#faq">FAQ</a>
+        <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="#contacto">Contacto</a>
       </nav>
+
+      <a
+        class="hidden items-center rounded-[100px] bg-violet-accent px-5 py-2.5 text-xs font-semibold text-on-violet transition-transform hover:scale-105 active:scale-95 md:inline-flex"
+        href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta"
+        target="_blank" rel="noopener noreferrer"
+      >Pedir propuesta</a>
 
       <button
         class="inline-flex flex-col gap-1.5 p-2 md:hidden"
         type="button" data-menu-toggle aria-label="Abrir menú" aria-expanded="false"
       >
-        <span class="block h-px w-6 bg-primary"></span>
-        <span class="block h-px w-6 bg-primary"></span>
-        <span class="block h-px w-6 bg-primary"></span>
+        <span class="block h-px w-6 bg-white"></span>
+        <span class="block h-px w-6 bg-white"></span>
+        <span class="block h-px w-6 bg-white"></span>
       </button>
     </div>
 
     <!-- Mobile panel -->
-    <div class="hidden border-t border-outline-variant/60 bg-background px-5 py-4 md:hidden" data-menu>
+    <div class="hidden border-t border-white/10 bg-ink/95 px-5 py-4 backdrop-blur-xl md:hidden" data-menu>
       <div class="flex flex-col gap-4">
-        <a class="text-sm font-medium text-secondary hover:text-primary" href="#saas">BiFrost POS</a>
-        <a class="text-sm font-medium text-secondary hover:text-primary" href="secciones/servicios.html">Servicios</a>
-        <a class="text-sm font-medium text-secondary hover:text-primary" href="secciones/nosotros.html">Nosotros</a>
-        <a class="text-sm font-medium text-secondary hover:text-primary" href="secciones/contacto.html">Contacto</a>
-        <a class="inline-flex w-fit items-center rounded-[100px] bg-primary px-5 py-2.5 text-xs font-semibold text-on-primary" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">Pedir propuesta</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="secciones/servicios.html">Servicios</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="#bifrost">BiFrost</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="secciones/nosotros.html">Nosotros</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="#faq">FAQ</a>
+        <a class="text-sm text-white/70 hover:text-violet-accent" href="#contacto">Contacto</a>
+        <a class="inline-flex w-fit items-center rounded-[100px] bg-violet-accent px-5 py-2.5 text-xs font-semibold text-on-violet" href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">Pedir propuesta</a>
       </div>
     </div>
   </header>
 
-  <main class="w-full">
+  <main>
 
     <!-- ─── HERO ─── -->
-    <section class="px-5 pb-16 pt-6" id="inicio">
-      <div class="relative mx-auto flex min-h-[620px] max-w-container items-center justify-center overflow-hidden rounded-[20px]">
-        <img alt="Dashboard del POS BiFrost" class="absolute inset-0 h-full w-full object-cover" src="assets/img/dashboard-bifrost.webp">
-        <div class="absolute inset-0 bg-gradient-to-b from-white/85 via-white/70 to-white/85"></div>
-        <div class="relative z-10 mx-4 w-full max-w-3xl px-6 py-16 text-center" data-reveal>
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Producto destacado</span>
-          <h1 class="mt-5 font-serif text-4xl font-light leading-tight tracking-tight text-primary md:text-6xl">
-            BiFrost: el POS con inteligencia financiera para tu PyME.
-          </h1>
-          <p class="mx-auto mt-6 max-w-xl text-base font-light leading-relaxed text-secondary">
-            Controlá tus ventas, proyectá tu flujo de caja y escalá tu negocio. Y para crecer, sumamos landing pages, automatizaciones, chatbots y asesoramiento financiero.
-          </p>
-          <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <a class="inline-flex items-center rounded-[100px] bg-primary px-7 py-3 text-sm font-semibold text-on-primary transition-all duration-300 hover:bg-primary/90"
-              href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20BiFrost%20y%20sus%20servicios" target="_blank" rel="noopener noreferrer">
-              Hablar por WhatsApp
-            </a>
-            <a class="inline-flex items-center rounded-[100px] border border-primary/20 bg-white/60 px-7 py-3 text-sm font-semibold text-primary transition-all duration-300 hover:border-primary" href="#saas">
-              Conocer BiFrost
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 pt-20 md:px-margin-page" id="inicio">
+      <!-- Dot grid interactivo (canvas montado por hero-fx.js) -->
+      <div id="dot-grid" class="pointer-events-none absolute inset-0 h-full w-full opacity-30" aria-hidden="true"></div>
 
-    <!-- ─── INTRO (label + párrafo grande) ─── -->
-    <section class="px-5 pb-20 pt-8">
-      <div class="mx-auto max-w-container">
-        <div class="flex flex-col gap-8 lg:flex-row">
-          <div class="flex items-start pt-3 lg:w-2/5">
-            <span class="whitespace-nowrap text-xs font-semibold uppercase tracking-[0.2em] text-secondary">La propuesta</span>
-          </div>
-          <div class="lg:w-3/5">
-            <p class="font-serif text-3xl font-light leading-tight tracking-tight text-primary md:text-[2.25rem]" data-reveal>
-              Unimos dos mundos que casi nunca trabajan juntos: desarrollo de software que vende y finanzas que ordenan. Tu negocio crece <em class="not-italic text-secondary">gracias</em> a su tecnología y sus números, no a pesar de ellos.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── MARQUEE de capacidades ─── -->
-    <section class="mb-4 w-full overflow-hidden border-y border-outline-variant/60 bg-surface-container-low py-7">
-      <div class="logo-track opacity-50">
-        <div class="flex items-center gap-16 pr-16 text-sm font-medium uppercase tracking-[0.15em] text-primary">
-          <span>BiFrost POS</span><span>Landing Pages</span><span>E-commerce</span><span>Automatizaciones</span><span>Chatbot WhatsApp</span><span>Asesoría Financiera</span>
-        </div>
-        <div class="flex items-center gap-16 pr-16 text-sm font-medium uppercase tracking-[0.15em] text-primary" aria-hidden="true">
-          <span>BiFrost POS</span><span>Landing Pages</span><span>E-commerce</span><span>Automatizaciones</span><span>Chatbot WhatsApp</span><span>Asesoría Financiera</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── PROBLEMA ─── -->
-    <section class="px-5 py-24" id="problema">
-      <div class="mx-auto max-w-container">
-        <div class="max-w-2xl" data-reveal>
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">El problema</span>
-          <h2 class="mt-4 font-serif text-4xl font-light leading-tight tracking-tight text-primary">
-            La mayoría de los negocios crecen a pesar de su tecnología y sus finanzas.
-          </h2>
-        </div>
-        <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="material-symbols-outlined mt-6 text-2xl text-primary">bar_chart</span>
-            <h3 class="mt-20 text-xl font-medium tracking-tight text-primary">Sin datos, sin control</h3>
-            <p class="mt-3 text-base font-light leading-relaxed text-secondary">Decidís por intuición porque no tenés métricas claras ni proyecciones confiables de tu negocio.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="material-symbols-outlined mt-6 text-2xl text-primary">devices</span>
-            <h3 class="mt-20 text-xl font-medium tracking-tight text-primary">Tu presencia digital no vende</h3>
-            <p class="mt-3 text-base font-light leading-relaxed text-secondary">Tenés redes pero no una web que trabaje sola, captando clientes mientras vos te ocupás del negocio.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="material-symbols-outlined mt-6 text-2xl text-primary">schedule</span>
-            <h3 class="mt-20 text-xl font-medium tracking-tight text-primary">Tiempo perdido en lo manual</h3>
-            <p class="mt-3 text-base font-light leading-relaxed text-secondary">Respondés mensajes repetitivos y cargás datos a mano en procesos que podrían estar automatizados.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── SERVICIOS (features grid) ─── -->
-    <section class="px-5 py-12" id="servicios">
-      <div class="mx-auto max-w-container">
-        <div class="mb-16 max-w-2xl" data-reveal>
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Servicios</span>
-          <h2 class="mt-4 font-serif text-4xl font-light leading-tight tracking-tight text-primary">
-            Una solución integral para tu tecnología y tus finanzas.
-          </h2>
-        </div>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="material-symbols-outlined mt-6 text-2xl text-primary">ad_units</span>
-            <h3 class="mt-16 text-lg font-medium tracking-tight text-primary">Landing pages de alta conversión</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Páginas para captar leads, reservas o consultas desde campañas y tráfico orgánico.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="material-symbols-outlined mt-6 text-2xl text-primary">shopping_bag</span>
-            <h3 class="mt-16 text-lg font-medium tracking-tight text-primary">Tiendas online (e-commerce)</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Catálogo, carrito y checkout optimizado para reducir el abandono y vender más.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="material-symbols-outlined mt-6 text-2xl text-primary">settings_suggest</span>
-            <h3 class="mt-16 text-lg font-medium tracking-tight text-primary">Automatizaciones de negocio</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Flujos automáticos para seguimiento de leads, notificaciones y sincronización de datos.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="material-symbols-outlined mt-6 text-2xl text-primary">forum</span>
-            <h3 class="mt-16 text-lg font-medium tracking-tight text-primary">Chatbot para WhatsApp</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Atendé consultas, calificá leads y enviá info automáticamente, las 24 horas.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── BiFrost SPOTLIGHT (split + card de vidrio) ─── -->
-    <section class="px-5 py-12" id="saas">
-      <div class="mx-auto max-w-container">
-        <div class="mb-2 max-w-2xl" data-reveal>
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Nuestro producto</span>
-          <h2 class="mt-4 font-serif text-4xl font-light leading-tight tracking-tight text-primary">
-            Un POS que no solo registra ventas: las analiza, proyecta y te ayuda a decidir.
-          </h2>
-        </div>
-        <div class="mt-8 flex w-full flex-col lg:flex-row lg:min-h-[640px]">
-          <!-- Izquierda: texto + lista reveal -->
-          <div class="flex h-full w-full flex-col justify-between py-5 lg:w-2/5">
-            <div class="flex h-full max-w-md flex-col">
-              <div>
-                <div class="mb-6 flex items-center gap-3">
-                  <span class="material-symbols-outlined text-2xl text-primary">insights</span>
-                  <h3 class="font-serif text-3xl font-light tracking-tight text-primary">BiFrost</h3>
-                </div>
-                <p class="mb-10 text-sm font-light leading-relaxed text-secondary">
-                  Diseñado junto a un especialista en finanzas corporativas. Más allá del punto de venta: las métricas que importan y las proyecciones que necesitás para operar con información real.
-                </p>
-              </div>
-              <div class="mt-auto space-y-2">
-                <div class="group cursor-pointer border-t border-outline-variant pb-4 pt-6">
-                  <div class="relative overflow-hidden">
-                    <div class="absolute left-0 top-[-1.5rem] h-px w-1/3 bg-primary transition-all duration-500 group-hover:w-full"></div>
-                    <h4 class="mb-2 text-lg font-medium text-primary">Proyecciones financieras</h4>
-                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-hover:grid-rows-[1fr]">
-                      <p class="overflow-hidden pr-4 text-sm font-light leading-relaxed text-secondary">Estimaciones automáticas de ingresos, costos y rentabilidad para los próximos períodos.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="group cursor-pointer border-t border-outline-variant pb-4 pt-6">
-                  <div class="relative overflow-hidden">
-                    <div class="absolute left-0 top-[-1.5rem] h-px w-0 bg-primary transition-all duration-500 group-hover:w-full"></div>
-                    <h4 class="mb-2 text-lg font-medium text-secondary transition-colors group-hover:text-primary">Métricas en tiempo real</h4>
-                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-hover:grid-rows-[1fr]">
-                      <p class="overflow-hidden pr-4 text-sm font-light leading-relaxed text-secondary">Ticket promedio, margen bruto, tendencias de venta y alertas de desvío automáticas.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="group cursor-pointer border-t border-outline-variant pb-4 pt-6">
-                  <div class="relative overflow-hidden">
-                    <div class="absolute left-0 top-[-1.5rem] h-px w-0 bg-primary transition-all duration-500 group-hover:w-full"></div>
-                    <h4 class="mb-2 text-lg font-medium text-secondary transition-colors group-hover:text-primary">Reportes ejecutivos</h4>
-                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-hover:grid-rows-[1fr]">
-                      <p class="overflow-hidden pr-4 text-sm font-light leading-relaxed text-secondary">Informes listos para exportar y presentar a socios, inversores o tu contador.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Derecha: imagen + card de vidrio -->
-          <div class="group relative flex w-full items-center justify-center self-stretch overflow-hidden p-5 lg:w-3/5">
-            <img alt="Interfaz de BiFrost" class="absolute inset-0 h-full w-full rounded-[20px] object-cover transition-transform duration-1000 group-hover:scale-105" src="assets/img/dashboard-bifrost.webp">
-            <div class="relative z-10 mx-4 w-full overflow-hidden rounded-[20px] border border-outline-variant bg-white/70 shadow-2xl backdrop-blur-xl transition-all duration-500 group-hover:-translate-y-1">
-              <div class="flex items-center justify-between border-b border-primary/10 bg-white/40 p-4">
-                <div class="flex items-center gap-4">
-                  <div class="liquid-orb"></div>
-                  <div class="flex gap-1.5">
-                    <div class="h-2 w-2 rounded-full bg-primary/20"></div>
-                    <div class="h-2 w-2 rounded-full bg-primary/20"></div>
-                  </div>
-                </div>
-                <div class="text-[10px] font-semibold uppercase tracking-widest text-primary/50">bifrost · dashboard</div>
-              </div>
-              <div class="flex flex-col gap-8 p-8">
-                <div class="grid grid-cols-3 gap-4">
-                  <div class="space-y-1">
-                    <div class="text-[10px] uppercase tracking-wider text-primary/50">Margen bruto</div>
-                    <div class="text-xl font-light text-primary">42,8%</div>
-                    <div class="h-1 w-full overflow-hidden rounded-full bg-primary/5"><div class="h-full w-[88%] bg-primary/40"></div></div>
-                  </div>
-                  <div class="space-y-1">
-                    <div class="text-[10px] uppercase tracking-wider text-primary/50">Ventas (mes)</div>
-                    <div class="text-xl font-light text-primary">+12,4%</div>
-                    <div class="h-1 w-full overflow-hidden rounded-full bg-primary/5"><div class="h-full w-[65%] bg-primary/40"></div></div>
-                  </div>
-                  <div class="space-y-1">
-                    <div class="text-[10px] uppercase tracking-wider text-primary/50">Ticket prom.</div>
-                    <div class="text-xl font-light text-primary">$ 18.6k</div>
-                    <div class="h-1 w-full overflow-hidden rounded-full bg-primary/5"><div class="h-full w-[74%] bg-primary/40"></div></div>
-                  </div>
-                </div>
-                <div class="relative flex h-44 w-full items-end justify-between border-b border-l border-primary/10 px-2 pb-2">
-                  <div class="absolute inset-0 flex flex-col justify-between py-2">
-                    <div class="w-full border-t border-primary/5"></div>
-                    <div class="w-full border-t border-primary/5"></div>
-                    <div class="w-full border-t border-primary/5"></div>
-                  </div>
-                  <div class="relative z-10 w-4 rounded-t-sm bg-primary/20" style="height:40%"></div>
-                  <div class="relative z-10 w-4 rounded-t-sm bg-primary/40" style="height:65%"></div>
-                  <div class="relative z-10 w-4 rounded-t-sm bg-primary/10" style="height:30%"></div>
-                  <div class="relative z-10 w-4 rounded-t-sm bg-primary/60" style="height:85%"></div>
-                  <div class="relative z-10 w-4 rounded-t-sm bg-primary/30" style="height:50%"></div>
-                  <div class="relative z-10 w-4 rounded-t-sm bg-primary/50" style="height:75%"></div>
-                  <div class="relative z-10 w-4 rounded-t-sm bg-primary/20" style="height:45%"></div>
-                  <div class="relative z-10 w-4 rounded-t-sm bg-primary/40" style="height:60%"></div>
-                </div>
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm text-primary/40">schedule</span>
-                    <span class="text-[10px] text-primary/50">Datos actualizados al instante</span>
-                  </div>
-                  <div class="font-mono text-[10px] tracking-tighter text-primary/60">Datos ilustrativos</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-6" data-reveal>
-          <a class="inline-flex items-center rounded-[100px] bg-primary px-7 py-3 text-sm font-semibold text-on-primary transition-all duration-300 hover:bg-primary/90"
-            href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20conocer%20BiFrost%20de%20Kreta" target="_blank" rel="noopener noreferrer">
-            Quiero conocer BiFrost
+      <div class="parallax-layer relative z-10 max-w-4xl text-center" data-speed="0.02" data-reveal>
+        <span class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-violet-accent">Tecnología + Finanzas</span>
+        <h1 class="mb-6 font-garamond text-5xl font-normal leading-tight tracking-tight text-white md:text-7xl">
+          Transformamos PyMEs con tecnología y datos.
+        </h1>
+        <p class="mx-auto mb-12 max-w-2xl text-lg font-light leading-relaxed text-white/60">
+          Desde BiFrost —nuestro POS con inteligencia financiera— hasta landing pages, automatizaciones, chatbots y asesoría. Un solo equipo para dos mundos que siempre debieron trabajar juntos.
+        </p>
+        <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a class="inner-glow-top inline-flex items-center rounded-full bg-violet-accent px-10 py-4 text-sm font-semibold text-on-violet shadow-lg shadow-violet-accent/20 transition-transform hover:scale-105"
+            href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">
+            Pedir propuesta
+          </a>
+          <a class="glass inline-flex items-center rounded-full px-10 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/5"
+            href="https://demo.bifrost-software.com.ar/login" target="_blank" rel="noopener noreferrer">
+            Ver BiFrost
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ─── INTERSTITIAL ─── -->
-    <section class="px-5 py-12">
+    <!-- ─── EL PROBLEMA ─── -->
+    <section class="mx-auto max-w-container px-5 py-24 md:px-margin-page md:py-32">
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="glass-card rounded-lg p-10" data-reveal>
+          <span class="material-symbols-outlined mb-6 text-4xl text-cool-violet">analytics</span>
+          <h3 class="mb-4 font-garamond text-2xl text-white">Sin datos, sin control</h3>
+          <p class="text-white/60">Decisiones basadas en la intuición en lugar de métricas reales. La ceguera operativa es el mayor riesgo para tu crecimiento.</p>
+        </div>
+        <div class="glass-card rounded-lg p-10" data-reveal>
+          <span class="material-symbols-outlined mb-6 text-4xl text-ember">storefront</span>
+          <h3 class="mb-4 font-garamond text-2xl text-white">Presencia que no vende</h3>
+          <p class="text-white/60">Tener una web no es suficiente. Necesitás una plataforma optimizada para la conversión y la experiencia del usuario.</p>
+        </div>
+        <div class="glass-card rounded-lg p-10" data-reveal>
+          <span class="material-symbols-outlined mb-6 text-4xl text-violet-accent">hourglass_empty</span>
+          <h3 class="mb-4 font-garamond text-2xl text-white">Tiempo perdido</h3>
+          <p class="text-white/60">Tareas manuales repetitivas que consumen el recurso más valioso de tu equipo. Automatizar es ganar libertad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SERVICIOS ─── -->
+    <section class="border-y border-white/5 bg-ink-soft/40 px-5 py-24 backdrop-blur-sm md:px-margin-page md:py-32" id="servicios">
       <div class="mx-auto max-w-container">
-        <div class="relative flex h-[400px] items-center justify-center overflow-hidden rounded-[20px] md:h-[460px]">
-          <img alt="Crecimiento sostenido" class="absolute inset-0 h-full w-full object-cover" src="assets/img/dashboard-bifrost.webp">
-          <div class="absolute inset-0 bg-primary/55"></div>
-          <div class="relative z-10 mx-auto max-w-3xl px-8 text-center">
-            <h2 class="font-serif text-3xl font-light leading-tight tracking-tight text-white md:text-5xl">
-              Tecnología y finanzas, trabajando juntas por el crecimiento real de tu negocio.
-            </h2>
+        <div class="mb-16" data-reveal>
+          <span class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-violet-accent">Capacidades</span>
+          <h2 class="font-garamond text-4xl text-white">Soluciones integrales</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="glass-card group rounded-lg p-8" data-reveal>
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-violet-accent/10 transition-colors group-hover:bg-violet-accent/20">
+              <span class="material-symbols-outlined text-violet-accent">web</span>
+            </div>
+            <h4 class="mb-2 font-garamond text-xl text-white">Landing pages</h4>
+            <p class="text-sm text-white/60">Diseños de alta conversión orientados a captar leads y ventas directas.</p>
+          </div>
+          <div class="glass-card group rounded-lg p-8" data-reveal>
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-cool-violet/10 transition-colors group-hover:bg-cool-violet/20">
+              <span class="material-symbols-outlined text-cool-violet">shopping_cart</span>
+            </div>
+            <h4 class="mb-2 font-garamond text-xl text-white">E-commerce</h4>
+            <p class="text-sm text-white/60">Tiendas online robustas con integraciones de pago y logística fluidas.</p>
+          </div>
+          <div class="glass-card group rounded-lg p-8" data-reveal>
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-ember/10 transition-colors group-hover:bg-ember/20">
+              <span class="material-symbols-outlined text-ember">bolt</span>
+            </div>
+            <h4 class="mb-2 font-garamond text-xl text-white">Automatizaciones</h4>
+            <p class="text-sm text-white/60">Conectamos tus herramientas para eliminar errores y ahorrar horas de trabajo.</p>
+          </div>
+          <div class="glass-card group rounded-lg p-8" data-reveal>
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-violet-accent/10 transition-colors group-hover:bg-violet-accent/20">
+              <span class="material-symbols-outlined text-violet-accent">chat</span>
+            </div>
+            <h4 class="mb-2 font-garamond text-xl text-white">Chatbot WhatsApp</h4>
+            <p class="text-sm text-white/60">Atención 24/7 con IA configurada para responder y vender por vos.</p>
+          </div>
+          <div class="glass-card group rounded-lg p-8" data-reveal>
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-cool-violet/10 transition-colors group-hover:bg-cool-violet/20">
+              <span class="material-symbols-outlined text-cool-violet">finance_mode</span>
+            </div>
+            <h4 class="mb-2 font-garamond text-xl text-white">Asesoría financiera</h4>
+            <p class="text-sm text-white/60">Planificación estratégica para maximizar tus márgenes y flujo de caja.</p>
+          </div>
+          <div class="glass-card group rounded-lg p-8" data-reveal>
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-ember/10 transition-colors group-hover:bg-ember/20">
+              <span class="material-symbols-outlined text-ember">point_of_sale</span>
+            </div>
+            <h4 class="mb-2 font-garamond text-xl text-white">BiFrost POS</h4>
+            <p class="text-sm text-white/60">Nuestro sistema de gestión con inteligencia financiera para comercios de alto rendimiento.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ─── EQUIPO ─── -->
-    <section class="px-5 py-24" id="nosotros">
-      <div class="mx-auto max-w-container">
-        <div class="mb-16 max-w-2xl" data-reveal>
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">El equipo</span>
-          <h2 class="mt-4 font-serif text-4xl font-light leading-tight tracking-tight text-primary">
-            Dos especialistas. Una solución completa.
-          </h2>
+    <!-- ─── BIFROST ─── -->
+    <section class="overflow-hidden px-5 py-24 md:px-margin-page md:py-32" id="bifrost">
+      <div class="mx-auto grid max-w-container items-center gap-16 lg:grid-cols-2">
+        <div data-reveal>
+          <span class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-ember">Producto destacado</span>
+          <h2 class="mb-8 font-garamond text-4xl leading-tight text-white md:text-5xl">BiFrost POS: la claridad que tu negocio necesita.</h2>
+          <ul class="space-y-6">
+            <li class="flex gap-4">
+              <span class="material-symbols-outlined mt-0.5 text-violet-accent">check_circle</span>
+              <div>
+                <h5 class="font-semibold text-white">Monitoreo en tiempo real</h5>
+                <p class="text-sm text-white/60">Ventas, stock y márgenes desde cualquier dispositivo.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="material-symbols-outlined mt-0.5 text-violet-accent">check_circle</span>
+              <div>
+                <h5 class="font-semibold text-white">Proyecciones financieras</h5>
+                <p class="text-sm text-white/60">Flujo de caja, margen bruto y neto calculados automáticamente.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="material-symbols-outlined mt-0.5 text-violet-accent">check_circle</span>
+              <div>
+                <h5 class="font-semibold text-white">Reportes ejecutivos</h5>
+                <p class="text-sm text-white/60">Análisis de productos estrella y decisiones de compra respaldadas por datos.</p>
+              </div>
+            </li>
+          </ul>
+          <a class="mt-10 inline-flex items-center gap-2 rounded-full bg-violet-accent px-7 py-3 text-sm font-semibold text-on-violet transition-transform hover:scale-105"
+            href="https://demo.bifrost-software.com.ar/login" target="_blank" rel="noopener noreferrer">
+            <span class="material-symbols-outlined text-base">open_in_new</span>
+            Probar la demo
+          </a>
         </div>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <article class="flex flex-col rounded-[20px] border border-outline-variant bg-surface-container-lowest p-8" data-reveal>
-            <span class="material-symbols-outlined text-3xl text-primary">code</span>
-            <span class="mt-6 text-xs font-semibold uppercase tracking-[0.15em] text-secondary">Desarrollador de Software</span>
-            <h3 class="mt-2 text-2xl font-medium tracking-tight text-primary">Sebastián Arroyo</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Landing pages, e-commerce, automatizaciones y chatbots para WhatsApp. Tecnología pensada para vender más y operar mejor.</p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Landing pages</span>
-              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">E-commerce</span>
-              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Automatizaciones</span>
-              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Chatbot WA</span>
-            </div>
-          </article>
-          <article class="flex flex-col rounded-[20px] border border-outline-variant bg-surface-container-lowest p-8" data-reveal>
-            <span class="material-symbols-outlined text-3xl text-primary">monitoring</span>
-            <span class="mt-6 text-xs font-semibold uppercase tracking-[0.15em] text-secondary">Analista Financiero</span>
-            <h3 class="mt-2 text-2xl font-medium tracking-tight text-primary">Juan Petrus</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Análisis financiero, planeamiento estratégico y soporte en decisiones clave. Finanzas corporativas aplicadas al crecimiento real.</p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Análisis financiero</span>
-              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Proyecciones</span>
-              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">Planeamiento</span>
-              <span class="rounded-[100px] border border-outline-variant px-3 py-1 text-xs text-secondary">BiFrost (POS)</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <!-- ─── BENEFICIOS ─── -->
-    <section class="px-5 py-12" id="beneficios">
-      <div class="mx-auto max-w-container">
-        <div class="mb-16 max-w-2xl" data-reveal>
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">¿Por qué elegirnos?</span>
-          <h2 class="mt-4 font-serif text-4xl font-light leading-tight tracking-tight text-primary">
-            No trabajamos con plantillas genéricas. Trabajamos con tu negocio.
-          </h2>
-        </div>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <h3 class="mt-6 text-lg font-medium tracking-tight text-primary">Visión integral</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Tecnología y finanzas juntas, los dos ejes que más impactan en el crecimiento.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <h3 class="mt-6 text-lg font-medium tracking-tight text-primary">Entrega rápida</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Procesos claros para lanzar sin eternizar el proyecto ni frenar tus operaciones.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <h3 class="mt-6 text-lg font-medium tracking-tight text-primary">Orientado a resultados</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Cada decisión de diseño, código y estrategia apunta a tus métricas reales.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <h3 class="mt-6 text-lg font-medium tracking-tight text-primary">Sin letra chica</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Comunicación directa, presupuestos claros y entregas que cumplen lo acordado.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── PROCESO ─── -->
-    <section class="px-5 py-24" id="proceso">
-      <div class="mx-auto max-w-container">
-        <div class="mb-16 max-w-2xl" data-reveal>
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Cómo trabajamos</span>
-          <h2 class="mt-4 font-serif text-4xl font-light leading-tight tracking-tight text-primary">
-            De la idea al resultado concreto, en un proceso simple.
-          </h2>
-        </div>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="mt-6 font-serif text-3xl font-light text-on-primary-container">01</span>
-            <h3 class="mt-4 text-lg font-medium tracking-tight text-primary">Diagnóstico inicial</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Entendemos tu negocio, tus objetivos y los problemas a resolver antes de proponer nada.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="mt-6 font-serif text-3xl font-light text-on-primary-container">02</span>
-            <h3 class="mt-4 text-lg font-medium tracking-tight text-primary">Propuesta y estrategia</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Diseñamos la solución adecuada con métricas de éxito claras desde el día uno.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="mt-6 font-serif text-3xl font-light text-on-primary-container">03</span>
-            <h3 class="mt-4 text-lg font-medium tracking-tight text-primary">Desarrollo o ejecución</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Ejecutamos con foco en resultados, con actualizaciones periódicas y tu participación.</p>
-          </article>
-          <article class="flex flex-col" data-reveal>
-            <div class="w-full border-t border-outline-variant"></div>
-            <span class="mt-6 font-serif text-3xl font-light text-on-primary-container">04</span>
-            <h3 class="mt-4 text-lg font-medium tracking-tight text-primary">Lanzamiento y seguimiento</h3>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Publicamos, activamos y monitoreamos para que la solución funcione como se espera.</p>
-          </article>
+        <div class="relative" data-reveal>
+          <!-- Mockup dashboard en vidrio -->
+          <div class="glass relative z-10 rounded-lg p-6">
+            <div class="mb-8 flex items-center justify-between">
+              <span class="text-sm font-semibold text-white">Dashboard general</span>
+              <span class="rounded bg-white/5 px-2 py-1 text-[10px] text-white/60">Últimos 30 días</span>
+            </div>
+            <div class="mb-8 grid grid-cols-3 gap-4">
+              <div class="rounded-lg bg-white/5 p-4">
+                <p class="mb-1 text-[10px] uppercase text-white/50">Ventas</p>
+                <p class="text-lg font-bold text-violet-accent">$1.2M</p>
+              </div>
+              <div class="rounded-lg bg-white/5 p-4">
+                <p class="mb-1 text-[10px] uppercase text-white/50">Margen</p>
+                <p class="text-lg font-bold text-ember">34%</p>
+              </div>
+              <div class="rounded-lg bg-white/5 p-4">
+                <p class="mb-1 text-[10px] uppercase text-white/50">Ticket</p>
+                <p class="text-lg font-bold text-cool-violet">$12.4k</p>
+              </div>
+            </div>
+            <div class="flex h-40 w-full items-end gap-1 overflow-hidden rounded-lg bg-white/5 px-4">
+              <div class="w-full rounded-t bg-violet-accent/60" style="height:40%"></div>
+              <div class="w-full rounded-t bg-violet-accent/60" style="height:65%"></div>
+              <div class="w-full rounded-t bg-violet-accent/60" style="height:50%"></div>
+              <div class="w-full rounded-t bg-violet-accent/60" style="height:80%"></div>
+              <div class="w-full rounded-t bg-violet-accent/60" style="height:45%"></div>
+              <div class="w-full rounded-t bg-violet-accent/60" style="height:90%"></div>
+              <div class="w-full rounded-t bg-violet-accent/60" style="height:75%"></div>
+            </div>
+          </div>
+          <!-- Glows decorativos detrás -->
+          <div class="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-violet-accent/10 blur-[100px]"></div>
+          <div class="absolute -bottom-10 -left-10 h-64 w-64 rounded-full bg-cool-violet/10 blur-[100px]"></div>
         </div>
       </div>
     </section>
 
     <!-- ─── FAQ ─── -->
-    <section class="px-5 py-24" id="faq">
-      <div class="mx-auto max-w-container">
-        <div class="mb-12 max-w-2xl" data-reveal>
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">Preguntas frecuentes</span>
-          <h2 class="mt-4 font-serif text-4xl font-light leading-tight tracking-tight text-primary">
-            Las dudas más comunes sobre Kreta.
-          </h2>
-        </div>
-        <div class="mx-auto max-w-3xl divide-y divide-outline-variant border-y border-outline-variant">
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-              <h3 class="text-lg font-medium text-primary">¿Qué es exactamente Kreta?</h3>
-              <span class="material-symbols-outlined text-secondary transition-transform group-open:rotate-45">add</span>
-            </summary>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Kreta combina desarrollo de software profesional y análisis financiero corporativo. Ayudamos a comercios y PyMEs a escalar automatizando sus ventas e integrando métricas reales para decidir mejor.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-              <h3 class="text-lg font-medium text-primary">¿Cómo se combinan tecnología y finanzas?</h3>
-              <span class="material-symbols-outlined text-secondary transition-transform group-open:rotate-45">add</span>
-            </summary>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Creamos tus canales de venta digitales (web, chatbot, e-commerce) y conectamos tu operación con BiFrost para que tengas proyecciones financieras y flujo de caja en tiempo real. Las agencias solo programan; los consultores solo hacen Excel. Nosotros unimos ambos.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-              <h3 class="text-lg font-medium text-primary">¿Tengo que contratar ambos servicios?</h3>
-              <span class="material-symbols-outlined text-secondary transition-transform group-open:rotate-45">add</span>
-            </summary>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">No. Podés tomar solo desarrollo web/automatizaciones, solo asesoramiento financiero, o usar BiFrost de forma independiente. El mayor impacto se logra combinándolos.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-              <h3 class="text-lg font-medium text-primary">¿Qué es BiFrost y cómo se integra?</h3>
-              <span class="material-symbols-outlined text-secondary transition-transform group-open:rotate-45">add</span>
-            </summary>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">BiFrost es nuestro POS con análisis financiero integrado. No solo registra ventas: proyecta tu flujo de caja, calcula márgenes brutos y netos automáticamente y genera reportes ejecutivos.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-              <h3 class="text-lg font-medium text-primary">¿Cuánto tarda un proyecto web o automatización?</h3>
-              <span class="material-symbols-outlined text-secondary transition-transform group-open:rotate-45">add</span>
-            </summary>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Una landing o chatbot básico: 10 a 15 días hábiles. Un e-commerce o automatización compleja: 3 a 5 semanas. Siempre con cronograma claro y entregas semanales.</p>
-          </details>
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
-              <h3 class="text-lg font-medium text-primary">¿Cómo empezamos?</h3>
-              <span class="material-symbols-outlined text-secondary transition-transform group-open:rotate-45">add</span>
-            </summary>
-            <p class="mt-3 text-[15px] font-light leading-relaxed text-secondary">Con una charla de diagnóstico sin costo. Nos contás de tu negocio, analizamos tus necesidades y te enviamos una propuesta en menos de 24 horas. Escribinos por WhatsApp o completá el formulario.</p>
-          </details>
-        </div>
+    <section class="mx-auto max-w-2xl px-5 py-24 md:py-32" id="faq">
+      <h2 class="mb-16 text-center font-garamond text-4xl text-white" data-reveal>Preguntas frecuentes</h2>
+      <div class="space-y-4">
+        <details class="glass group rounded-lg p-6" data-reveal>
+          <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-white">
+            ¿Qué es exactamente Kreta?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+          </summary>
+          <p class="mt-4 text-sm leading-relaxed text-white/60">Kreta combina desarrollo de software profesional y análisis financiero corporativo. Ayudamos a comercios y PyMEs a escalar automatizando sus ventas e integrando métricas reales para decidir mejor.</p>
+        </details>
+        <details class="glass group rounded-lg p-6" data-reveal>
+          <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-white">
+            ¿Cómo se combinan tecnología y finanzas?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+          </summary>
+          <p class="mt-4 text-sm leading-relaxed text-white/60">Creamos tus canales de venta digitales (web, chatbot, e-commerce) y conectamos tu operación con BiFrost para que tengas proyecciones financieras y flujo de caja en tiempo real. Las agencias solo programan; los consultores solo hacen Excel. Nosotros unimos ambos.</p>
+        </details>
+        <details class="glass group rounded-lg p-6" data-reveal>
+          <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-white">
+            ¿Tengo que contratar ambos servicios?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+          </summary>
+          <p class="mt-4 text-sm leading-relaxed text-white/60">No. Podés tomar solo desarrollo web/automatizaciones, solo asesoramiento financiero, o usar BiFrost de forma independiente. El mayor impacto se logra combinándolos.</p>
+        </details>
+        <details class="glass group rounded-lg p-6" data-reveal>
+          <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-white">
+            ¿Qué es BiFrost y cómo se integra?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+          </summary>
+          <p class="mt-4 text-sm leading-relaxed text-white/60">BiFrost es nuestro POS con análisis financiero integrado. No solo registra ventas: proyecta tu flujo de caja, calcula márgenes brutos y netos automáticamente y genera reportes ejecutivos.</p>
+        </details>
+        <details class="glass group rounded-lg p-6" data-reveal>
+          <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-white">
+            ¿Cuánto tarda un proyecto web o automatización?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+          </summary>
+          <p class="mt-4 text-sm leading-relaxed text-white/60">Una landing o chatbot básico: 10 a 15 días hábiles. Un e-commerce o automatización compleja: 3 a 5 semanas. Siempre con cronograma claro y entregas semanales.</p>
+        </details>
+        <details class="glass group rounded-lg p-6" data-reveal>
+          <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-white">
+            ¿Cómo empezamos?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+          </summary>
+          <p class="mt-4 text-sm leading-relaxed text-white/60">Con una charla de diagnóstico sin costo. Nos contás de tu negocio, analizamos tus necesidades y te enviamos una propuesta en menos de 24 horas. Escribinos por WhatsApp o completá el formulario.</p>
+        </details>
       </div>
     </section>
 
     <!-- ─── CONTACTO ─── -->
-    <section class="px-5 py-12" id="contacto">
-      <div class="mx-auto grid max-w-container grid-cols-1 gap-10 lg:grid-cols-2">
-        <div class="flex flex-col justify-center" data-reveal>
-          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">¿Arrancamos?</span>
-          <h2 class="mt-4 font-serif text-4xl font-light leading-tight tracking-tight text-primary">
-            Contanos de tu negocio y te decimos cómo ayudarte a crecer.
-          </h2>
-          <p class="mt-4 text-base font-light leading-relaxed text-secondary">Escribinos por WhatsApp o completá el formulario. Respondemos en menos de 24 horas.</p>
-          <a class="mt-8 inline-flex w-fit items-center rounded-[100px] bg-primary px-7 py-3 text-sm font-semibold text-on-primary transition-all duration-300 hover:bg-primary/90"
+    <section class="border-t border-white/5 bg-ink-soft/30 px-5 py-24 backdrop-blur-md md:px-margin-page md:py-32" id="contacto">
+      <div class="mx-auto grid max-w-container gap-16 lg:grid-cols-2">
+        <div data-reveal>
+          <h2 class="mb-6 font-garamond text-4xl leading-tight text-white md:text-5xl">Contanos de tu negocio y te decimos cómo ayudarte a crecer.</h2>
+          <p class="mb-12 text-white/60">Escribinos por WhatsApp o completá el formulario. Respondemos en menos de 24 horas.</p>
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-violet-accent">mail</span>
+              <span class="text-white">contacto@kreta.com.ar</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-cool-violet">location_on</span>
+              <span class="text-white">Buenos Aires, Argentina</span>
+            </div>
+          </div>
+          <a class="mt-12 inline-flex items-center gap-2 rounded-full border border-emerald-600/30 bg-emerald-600/20 px-6 py-3 text-sm font-semibold text-emerald-400 transition-colors hover:bg-emerald-600/30"
             href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20asesoramiento%20de%20Kreta" target="_blank" rel="noopener noreferrer">
-            Hablar por WhatsApp
+            <span class="material-symbols-outlined text-base">chat_bubble</span>
+            Consultar por WhatsApp
           </a>
         </div>
 
-        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form rounded-[20px] border border-outline-variant bg-surface-container-lowest p-8" id="formulario" novalidate>
-          <input type="hidden" name="access_key" value="cd071995-b483-4577-bcef-cd78d010db96">
-          <h3 class="font-serif text-2xl font-light text-primary">Contanos sobre tu proyecto</h3>
-
-          <div class="mt-6 space-y-4">
+        <div class="glass rounded-lg p-8 md:p-10" data-reveal>
+          <form action="https://api.web3forms.com/submit" method="POST" class="contact-form space-y-5" id="formulario" novalidate>
+            <input type="hidden" name="access_key" value="cd071995-b483-4577-bcef-cd78d010db96">
+            <p class="inline-flex items-center gap-1.5 rounded-full border border-violet-accent/20 bg-violet-accent/10 px-3 py-1 text-xs font-medium text-violet-accent">
+              <span class="material-symbols-outlined text-sm">hourglass_top</span>
+              Cupo limitado de proyectos al mes
+            </p>
             <div>
-              <label class="mb-1.5 block text-sm font-medium text-primary" for="name">Nombre</label>
+              <label class="mb-1.5 block text-sm font-medium text-white/80" for="name">Nombre</label>
               <input id="name" name="name" type="text" placeholder="Tu nombre" required autocomplete="name"
-                class="w-full rounded-[12px] border-outline-variant bg-white text-sm text-primary placeholder:text-on-primary-container focus:border-primary focus:ring-primary">
+                class="w-full rounded-[12px] border-white/10 bg-white/5 text-sm text-white placeholder:text-white/40 focus:border-violet-accent focus:ring-violet-accent">
             </div>
             <div>
-              <label class="mb-1.5 block text-sm font-medium text-primary" for="business">Negocio</label>
+              <label class="mb-1.5 block text-sm font-medium text-white/80" for="business">Negocio</label>
               <input id="business" name="business" type="text" placeholder="Nombre de tu negocio" required
-                class="w-full rounded-[12px] border-outline-variant bg-white text-sm text-primary placeholder:text-on-primary-container focus:border-primary focus:ring-primary">
+                class="w-full rounded-[12px] border-white/10 bg-white/5 text-sm text-white placeholder:text-white/40 focus:border-violet-accent focus:ring-violet-accent">
             </div>
             <div>
-              <label class="mb-1.5 block text-sm font-medium text-primary" for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="contacto@kreta.tech" required autocomplete="email"
-                class="w-full rounded-[12px] border-outline-variant bg-white text-sm text-primary placeholder:text-on-primary-container focus:border-primary focus:ring-primary">
+              <label class="mb-1.5 block text-sm font-medium text-white/80" for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="contacto@kreta.com.ar" required autocomplete="email"
+                class="w-full rounded-[12px] border-white/10 bg-white/5 text-sm text-white placeholder:text-white/40 focus:border-violet-accent focus:ring-violet-accent">
             </div>
             <div>
-              <label class="mb-1.5 block text-sm font-medium text-primary" for="service">¿Qué necesitás?</label>
+              <label class="mb-1.5 block text-sm font-medium text-white/80" for="service">¿Qué necesitás?</label>
               <select id="service" name="service" required
-                class="w-full rounded-[12px] border-outline-variant bg-white text-sm text-primary focus:border-primary focus:ring-primary">
-                <option value="">Seleccioná una opción</option>
-                <optgroup label="Soluciones Digitales">
+                class="w-full rounded-[12px] border-white/10 bg-white/5 text-sm text-white focus:border-violet-accent focus:ring-violet-accent">
+                <option value="" class="bg-ink-soft">Seleccioná una opción</option>
+                <optgroup label="Soluciones Digitales" class="bg-ink-soft">
                   <option value="landing">Landing page o sitio web</option>
                   <option value="ecommerce">Tienda online (e-commerce)</option>
                   <option value="automatizacion">Automatizaciones de negocio</option>
                   <option value="chatbot">Chatbot para WhatsApp</option>
                 </optgroup>
-                <optgroup label="Soluciones Financieras">
+                <optgroup label="Soluciones Financieras" class="bg-ink-soft">
                   <option value="saas-pos">BiFrost — POS con métricas avanzadas</option>
                   <option value="asesoramiento-financiero">Asesoramiento financiero profesional</option>
                 </optgroup>
@@ -566,49 +426,50 @@
               </select>
             </div>
             <div>
-              <label class="mb-1.5 block text-sm font-medium text-primary" for="message">Contanos más</label>
+              <label class="mb-1.5 block text-sm font-medium text-white/80" for="message">Contanos más</label>
               <textarea id="message" name="message" rows="4" placeholder="¿Qué problema querés resolver? ¿Cuáles son tus objetivos?" required
-                class="w-full rounded-[12px] border-outline-variant bg-white text-sm text-primary placeholder:text-on-primary-container focus:border-primary focus:ring-primary"></textarea>
+                class="w-full rounded-[12px] border-white/10 bg-white/5 text-sm text-white placeholder:text-white/40 focus:border-violet-accent focus:ring-violet-accent"></textarea>
             </div>
-          </div>
-
-          <button class="mt-6 inline-flex w-full items-center justify-center rounded-[100px] bg-primary px-7 py-3 text-sm font-semibold text-on-primary transition-all duration-300 hover:bg-primary/90 disabled:opacity-60" type="submit">
-            Quiero recibir una propuesta
-          </button>
-          <p class="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-on-primary-container">
-            <span class="material-symbols-outlined text-sm">lock</span>
-            Tus datos están seguros. Tomamos un cupo limitado de proyectos al mes.
-          </p>
-          <p class="form-note mt-3 text-center text-sm" id="form-message" role="status" aria-live="polite"></p>
-        </form>
+            <button class="inline-flex w-full items-center justify-center rounded-full bg-violet-accent px-7 py-4 text-sm font-semibold text-on-violet shadow-lg shadow-violet-accent/10 transition-transform hover:scale-[1.02] disabled:opacity-60" type="submit">
+              Quiero recibir una propuesta
+            </button>
+            <p class="flex items-center justify-center gap-1.5 text-center text-xs text-white/50">
+              <span class="material-symbols-outlined text-sm">lock</span>
+              Tus datos están seguros.
+            </p>
+            <p class="form-note mt-3 text-center text-sm" id="form-message" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
 
   </main>
 
   <!-- ─── FOOTER ─── -->
-  <footer class="mt-12 border-t border-outline-variant px-5 py-14">
+  <footer class="border-t border-white/10 bg-ink-soft/60 px-5 py-16 md:px-margin-page">
     <div class="mx-auto max-w-container">
-      <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+      <div class="mb-12 flex flex-col justify-between gap-10 md:flex-row md:items-start">
         <div class="max-w-sm">
-          <a class="font-serif text-2xl font-semibold tracking-tight text-primary" href="index.html">Kreta<span class="text-on-primary-container">.</span></a>
-          <p class="mt-4 text-sm font-light leading-relaxed text-secondary">Tecnología y finanzas para hacer crecer negocios reales.</p>
-          <p class="mt-3 text-sm text-secondary">contacto@kreta.tech</p>
+          <a class="mb-4 block font-garamond text-2xl font-semibold tracking-tight text-white" href="index.html">Kreta</a>
+          <p class="text-sm font-light leading-relaxed text-white/60">Tecnología y finanzas para hacer crecer negocios reales.</p>
+          <p class="mt-3 text-sm text-white/60">contacto@kreta.com.ar</p>
         </div>
         <nav class="flex flex-col gap-3 md:items-end" aria-label="Pie de página">
-          <a class="text-sm text-secondary transition-colors hover:text-primary" href="#saas">BiFrost POS</a>
-          <a class="text-sm text-secondary transition-colors hover:text-primary" href="secciones/servicios.html">Servicios</a>
-          <a class="text-sm text-secondary transition-colors hover:text-primary" href="secciones/nosotros.html">Nosotros</a>
-          <a class="text-sm text-secondary transition-colors hover:text-primary" href="#faq">Preguntas frecuentes</a>
-          <a class="text-sm text-secondary transition-colors hover:text-primary" href="secciones/contacto.html">Contacto</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="#bifrost">BiFrost POS</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="secciones/servicios.html">Servicios</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="secciones/nosotros.html">Nosotros</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="#faq">Preguntas frecuentes</a>
+          <a class="text-sm text-white/60 transition-colors hover:text-violet-accent" href="secciones/contacto.html">Contacto</a>
         </nav>
       </div>
-      <div class="mt-12 border-t border-outline-variant pt-6 text-xs text-on-primary-container">
-        Argentina · © 2026 Kreta
+      <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 md:flex-row">
+        <p class="text-xs text-white/40">© 2025 Kreta. Todos los derechos reservados.</p>
+        <p class="text-xs text-white/40">Buenos Aires, Argentina</p>
       </div>
     </div>
   </footer>
 
-  <script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js" defer></script>
+  <script src="assets/js/hero-fx.js" defer></script>
 </body>
 </html>

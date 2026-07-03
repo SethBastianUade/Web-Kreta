@@ -54,6 +54,14 @@ module.exports = {
         'tertiary-fixed-dim': '#c6c6c7',
         'primary-container': '#1b1b1b',
         'inverse-on-surface': '#f0f1f1',
+        // Home oscuro (Aurora). Nombres propios para no pisar los tokens claros de las subpáginas.
+        ink: '#0a0a0a',
+        'ink-soft': '#131313',
+        'cool-violet': '#9d85ff',
+        'violet-accent': '#c5c0ff',
+        'violet-strong': '#8981ff',
+        'on-violet': '#1e0090',
+        ember: '#f2994a',
       },
       spacing: {
         unit: '8px',
@@ -67,6 +75,9 @@ module.exports = {
       fontFamily: {
         sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
         serif: ['Noto Serif', 'Georgia', 'Times New Roman', 'serif'],
+        // Home oscuro (Aurora)
+        garamond: ['EB Garamond', 'Georgia', 'serif'],
+        grotesk: ['Hanken Grotesk', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'headline-xl': ['48px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '600' }],
