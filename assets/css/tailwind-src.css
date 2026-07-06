@@ -96,14 +96,14 @@
 }
 
 /* ── Navbar mobile: hamburguesa → X ───────────────────── */
-/* Las 3 barras son h-px (1px) con gap-1.5 (6px): centros a 7px de distancia. */
+/* Las 3 barras son h-0.5 (2px) con gap-1.5 (6px): centros a 8px de distancia. */
 [data-menu-toggle] span {
   transform-origin: center;
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s ease;
 }
-[data-menu-toggle][aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+[data-menu-toggle][aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 [data-menu-toggle][aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-[data-menu-toggle][aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+[data-menu-toggle][aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 /* ── Panel mobile: apertura animada (reemplaza el toggle de `hidden`) ──
    Con box-sizing:border-box, max-height:0 NO comprime padding/borde: hay que
