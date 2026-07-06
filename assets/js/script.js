@@ -133,3 +133,58 @@ document.querySelectorAll(".contact-form").forEach((form) => {
       });
   });
 });
+
+// ── Spotlight en glass-cards: la luz sigue el mouse ──
+if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  document.addEventListener(
+    "pointermove",
+    (e) => {
+      const card = e.target.closest(".glass-card");
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--spot-x", e.clientX - r.left + "px");
+      card.style.setProperty("--spot-y", e.clientY - r.top + "px");
+    },
+    { passive: true }
+  );
+}
+
+// ── Contadores animados (KPIs del mockup BiFrost) ──
+const counters = document.querySelectorAll("[data-count]");
+if (counters.length && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const countObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        countObserver.unobserve(entry.target);
+        const el = entry.target;
+        const to = parseFloat(el.dataset.countTo);
+        const decimals = parseInt(el.dataset.countDecimals || "0", 10);
+        const prefix = el.dataset.countPrefix || "";
+        const suffix = el.dataset.countSuffix || "";
+        const start = performance.now();
+        const duration = 1200;
+        const tick = (now) => {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+          el.textContent = prefix + (to * eased).toFixed(decimals) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    },
+    { threshold: 0.5 }
+  );
+  counters.forEach((el) => countObserver.observe(el));
+}
+
+// ── Barra de progreso de scroll ──
+const progressBar = document.querySelector(".scroll-progress");
+if (progressBar) {
+  const onProgress = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
+  };
+  onProgress();
+  window.addEventListener("scroll", onProgress, { passive: true });
+}
