@@ -75,6 +75,7 @@
   </script>
 </head>
 <body class="bg-ink font-grotesk text-white/90 antialiased selection:bg-cool-violet selection:text-white">
+  <div class="scroll-progress" aria-hidden="true"></div>
 
   <!-- ─── Fondo: shader aurora + mesh (WebGL, en hero-fx.js) ─── -->
   <div class="fixed inset-0 -z-10 h-full w-full opacity-40" aria-hidden="true">
@@ -107,7 +108,7 @@
       </nav>
 
       <a
-        class="hidden items-center rounded-[100px] bg-violet-accent px-5 py-2.5 text-xs font-semibold text-on-violet transition-transform hover:scale-105 active:scale-95 md:inline-flex"
+        class="btn-sheen hidden items-center rounded-[100px] bg-violet-accent px-5 py-2.5 text-xs font-semibold text-on-violet transition-transform hover:scale-105 active:scale-95 md:inline-flex"
         href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta"
         target="_blank" rel="noopener noreferrer"
       >Pedir propuesta</a>
@@ -142,7 +143,7 @@
       <!-- Dot grid interactivo (canvas montado por hero-fx.js) -->
       <div id="dot-grid" class="pointer-events-none absolute inset-0 h-full w-full opacity-30" aria-hidden="true"></div>
 
-      <div class="parallax-layer relative z-10 max-w-4xl text-center" data-speed="0.02" data-reveal>
+      <div class="parallax-layer relative z-10 max-w-4xl text-center" data-speed="0.02" data-hero>
         <span class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-violet-accent">Tecnología + Finanzas</span>
         <h1 class="mb-6 font-garamond text-5xl font-normal leading-tight tracking-tight text-white md:text-7xl">
           Transformamos PyMEs con tecnología y datos.
@@ -151,7 +152,7 @@
           Desde BiFrost —nuestro POS con inteligencia financiera— hasta landing pages, automatizaciones, chatbots y asesoría. Un solo equipo para dos mundos que siempre debieron trabajar juntos.
         </p>
         <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a class="inner-glow-top inline-flex items-center rounded-full bg-violet-accent px-10 py-4 text-sm font-semibold text-on-violet shadow-lg shadow-violet-accent/20 transition-transform hover:scale-105"
+          <a class="btn-sheen inner-glow-top inline-flex items-center rounded-full bg-violet-accent px-10 py-4 text-sm font-semibold text-on-violet shadow-lg shadow-violet-accent/20 transition-transform hover:scale-105"
             href="https://wa.me/5491173696380?text=Hola%2C%20quiero%20recibir%20una%20propuesta%20de%20Kreta" target="_blank" rel="noopener noreferrer">
             Pedir propuesta
           </a>
@@ -284,25 +285,25 @@
             <div class="mb-8 grid grid-cols-3 gap-4">
               <div class="rounded-lg bg-white/5 p-4">
                 <p class="mb-1 text-[10px] uppercase text-white/50">Ventas</p>
-                <p class="text-lg font-bold text-violet-accent">$1.2M</p>
+                <p class="text-lg font-bold text-violet-accent" data-count data-count-to="1.2" data-count-decimals="1" data-count-prefix="$" data-count-suffix="M">$1.2M</p>
               </div>
               <div class="rounded-lg bg-white/5 p-4">
                 <p class="mb-1 text-[10px] uppercase text-white/50">Margen</p>
-                <p class="text-lg font-bold text-ember">34%</p>
+                <p class="text-lg font-bold text-ember" data-count data-count-to="34" data-count-suffix="%">34%</p>
               </div>
               <div class="rounded-lg bg-white/5 p-4">
                 <p class="mb-1 text-[10px] uppercase text-white/50">Ticket</p>
-                <p class="text-lg font-bold text-cool-violet">$12.4k</p>
+                <p class="text-lg font-bold text-cool-violet" data-count data-count-to="12.4" data-count-decimals="1" data-count-prefix="$" data-count-suffix="k">$12.4k</p>
               </div>
             </div>
             <div class="flex h-40 w-full items-end gap-1 overflow-hidden rounded-lg bg-white/5 px-4">
-              <div class="w-full rounded-t bg-violet-accent/60" style="height:40%"></div>
-              <div class="w-full rounded-t bg-violet-accent/60" style="height:65%"></div>
-              <div class="w-full rounded-t bg-violet-accent/60" style="height:50%"></div>
-              <div class="w-full rounded-t bg-violet-accent/60" style="height:80%"></div>
-              <div class="w-full rounded-t bg-violet-accent/60" style="height:45%"></div>
-              <div class="w-full rounded-t bg-violet-accent/60" style="height:90%"></div>
-              <div class="w-full rounded-t bg-violet-accent/60" style="height:75%"></div>
+              <div class="chart-bar w-full rounded-t bg-violet-accent/60" style="height:40%"></div>
+              <div class="chart-bar w-full rounded-t bg-violet-accent/60" style="height:65%"></div>
+              <div class="chart-bar w-full rounded-t bg-violet-accent/60" style="height:50%"></div>
+              <div class="chart-bar w-full rounded-t bg-violet-accent/60" style="height:80%"></div>
+              <div class="chart-bar w-full rounded-t bg-violet-accent/60" style="height:45%"></div>
+              <div class="chart-bar w-full rounded-t bg-violet-accent/60" style="height:90%"></div>
+              <div class="chart-bar w-full rounded-t bg-violet-accent/60" style="height:75%"></div>
             </div>
           </div>
           <!-- Glows decorativos detrás -->
@@ -430,7 +431,7 @@
               <textarea id="message" name="message" rows="4" placeholder="¿Qué problema querés resolver? ¿Cuáles son tus objetivos?" required
                 class="w-full rounded-[12px] border-white/10 bg-white/5 text-sm text-white placeholder:text-white/40 focus:border-violet-accent focus:ring-violet-accent"></textarea>
             </div>
-            <button class="inline-flex w-full items-center justify-center rounded-full bg-violet-accent px-7 py-4 text-sm font-semibold text-on-violet shadow-lg shadow-violet-accent/10 transition-transform hover:scale-[1.02] disabled:opacity-60" type="submit">
+            <button class="btn-sheen inline-flex w-full items-center justify-center rounded-full bg-violet-accent px-7 py-4 text-sm font-semibold text-on-violet shadow-lg shadow-violet-accent/10 transition-transform hover:scale-[1.02] disabled:opacity-60" type="submit">
               Quiero recibir una propuesta
             </button>
             <p class="flex items-center justify-center gap-1.5 text-center text-xs text-white/50">
