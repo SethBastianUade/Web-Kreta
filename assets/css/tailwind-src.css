@@ -149,10 +149,129 @@ header#top.scrolled {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
+/* ── Hero: entrada cinematográfica escalonada (al cargar) ── */
+@keyframes kreta-hero-rise {
+  from { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+[data-hero] > * {
+  animation: kreta-hero-rise 0.9s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+[data-hero] > *:nth-child(2) { animation-delay: 0.12s; }
+[data-hero] > *:nth-child(3) { animation-delay: 0.24s; }
+[data-hero] > *:nth-child(4) { animation-delay: 0.36s; }
+
+/* ── Spotlight en glass-cards (sigue el mouse; JS setea --spot-x/y) ── */
+@media (hover: hover) and (pointer: fine) {
+  .glass-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .glass-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      240px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(197, 192, 255, 0.1),
+      transparent 65%
+    );
+    transition: opacity 0.4s ease;
+  }
+  .glass-card:hover::after { opacity: 1; }
+}
+
+/* ── Iconos de las cards: pop sutil en hover ── */
+.glass-card .material-symbols-outlined {
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.glass-card:hover .material-symbols-outlined {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+/* ── Barras del mockup BiFrost: crecen al revelarse ── */
+.reveal-ready .chart-bar {
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal-ready [data-reveal].is-in .chart-bar { transform: scaleY(1); }
+/* ponytail: delays fijos nth-child; las barras no tienen hover, no contaminan nada */
+.reveal-ready [data-reveal].is-in .chart-bar:nth-child(2) { transition-delay: 0.06s; }
+.reveal-ready [data-reveal].is-in .chart-bar:nth-child(3) { transition-delay: 0.12s; }
+.reveal-ready [data-reveal].is-in .chart-bar:nth-child(4) { transition-delay: 0.18s; }
+.reveal-ready [data-reveal].is-in .chart-bar:nth-child(5) { transition-delay: 0.24s; }
+.reveal-ready [data-reveal].is-in .chart-bar:nth-child(6) { transition-delay: 0.3s; }
+.reveal-ready [data-reveal].is-in .chart-bar:nth-child(7) { transition-delay: 0.36s; }
+
+/* ── FAQ: acordeón suave (progressive enhancement, Chrome/Edge 131+) ──
+   Firefox/Safari ignoran ::details-content o interpolate-size y abren
+   instantáneo, que es el comportamiento actual. */
+#faq details { interpolate-size: allow-keywords; }
+#faq details::details-content {
+  opacity: 0;
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease,
+    content-visibility 0.4s allow-discrete;
+}
+#faq details[open]::details-content {
+  opacity: 1;
+  block-size: auto;
+}
+
+/* ── CTAs primarios: barrido de brillo (sheen) en hover ── */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -75%;
+  width: 50%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn-sheen:hover::before { left: 125%; }
+
+/* ── Botón flotante de WhatsApp: pulso ocasional ──
+   El primer valor replica la sombra Tailwind existente (shadow-2xl
+   shadow-violet-accent/20) para no perderla al animar box-shadow. */
+@keyframes kreta-wa-pulse {
+  0%, 100% { box-shadow: 0 25px 50px -12px rgba(197, 192, 255, 0.2), 0 0 0 0 rgba(197, 192, 255, 0.35); }
+  50% { box-shadow: 0 25px 50px -12px rgba(197, 192, 255, 0.2), 0 0 0 10px rgba(197, 192, 255, 0); }
+}
+a[aria-label="Hablar por WhatsApp"] {
+  animation: kreta-wa-pulse 4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+/* ── Barra de progreso de scroll (JS setea el scaleX) ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60; /* header z-40, WhatsApp z-50 */
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, #9d85ff, #c5c0ff, #f2994a);
+}
+
 /* ── Respetar reduced-motion en todo lo nuevo ─────────── */
 @media (prefers-reduced-motion: reduce) {
   [data-menu-toggle] span,
   [data-menu],
   .nav-link::after,
   header#top { transition: none; }
+  [data-hero] > *,
+  a[aria-label="Hablar por WhatsApp"] { animation: none; }
+  .reveal-ready .chart-bar { transform: none; transition: none; }
+  #faq details::details-content { transition: none; }
 }
