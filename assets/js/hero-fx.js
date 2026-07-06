@@ -147,6 +147,18 @@
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
     });
+    // En mobile no hay mouse: seguimos el dedo para que el grid reaccione.
+    window.addEventListener(
+      "touchmove",
+      function (e) {
+        var t = e.touches[0];
+        if (!t) return;
+        var rect = container.getBoundingClientRect();
+        mouse.x = t.clientX - rect.left;
+        mouse.y = t.clientY - rect.top;
+      },
+      { passive: true }
+    );
     init();
     animate();
   })();

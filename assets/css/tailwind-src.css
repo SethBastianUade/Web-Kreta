@@ -57,7 +57,8 @@
 .reveal-ready [data-reveal] {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    background 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .reveal-ready [data-reveal].is-in {
   opacity: 1;
@@ -92,4 +93,66 @@
 .parallax-layer { will-change: transform; }
 @media (prefers-reduced-motion: reduce) {
   .parallax-layer { transform: none !important; }
+}
+
+/* ── Navbar mobile: hamburguesa → X ───────────────────── */
+/* Las 3 barras son h-px (1px) con gap-1.5 (6px): centros a 7px de distancia. */
+[data-menu-toggle] span {
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s ease;
+}
+[data-menu-toggle][aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+[data-menu-toggle][aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+[data-menu-toggle][aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Panel mobile: apertura animada (reemplaza el toggle de `hidden`) ──
+   Con box-sizing:border-box, max-height:0 NO comprime padding/borde: hay que
+   colapsar también py-4 (32px) y border-t (1px) o queda una franja visible. */
+[data-menu] {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top-width: 0;
+  transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease,
+    padding 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-top-width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+[data-menu].is-open {
+  max-height: 24rem;
+  opacity: 1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-top-width: 1px;
+}
+
+/* ── Nav desktop: subrayado animado ───────────────────── */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: #c5c0ff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* ── Header: se opaca al scrollear (clase .scrolled la pone script.js) ── */
+header#top { transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+header#top.scrolled {
+  background-color: rgba(10, 10, 10, 0.7);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Respetar reduced-motion en todo lo nuevo ─────────── */
+@media (prefers-reduced-motion: reduce) {
+  [data-menu-toggle] span,
+  [data-menu],
+  .nav-link::after,
+  header#top { transition: none; }
 }

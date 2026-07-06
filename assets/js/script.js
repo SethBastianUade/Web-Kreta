@@ -1,30 +1,45 @@
-// ── Menú mobile (sin Bootstrap) ──────────────────────
+// ── Menú mobile (sin Bootstrap): transición + scroll-lock ──
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const menuPanel = document.querySelector("[data-menu]");
 if (menuToggle && menuPanel) {
-  menuToggle.addEventListener("click", () => {
-    const open = menuPanel.classList.toggle("hidden") === false;
+  const setMenu = (open) => {
+    menuPanel.classList.toggle("is-open", open);
     menuToggle.setAttribute("aria-expanded", String(open));
-  });
+    document.body.classList.toggle("overflow-hidden", open); // scroll-lock del fondo
+  };
+  menuToggle.addEventListener("click", () => setMenu(!menuPanel.classList.contains("is-open")));
   // Cerrar al tocar un link
-  menuPanel.querySelectorAll("a").forEach((a) =>
-    a.addEventListener("click", () => {
-      menuPanel.classList.add("hidden");
-      menuToggle.setAttribute("aria-expanded", "false");
-    })
-  );
+  menuPanel.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  // Si el viewport pasa a desktop con el menú abierto, liberar el scroll-lock
+  matchMedia("(min-width: 768px)").addEventListener("change", (e) => {
+    if (e.matches) setMenu(false);
+  });
 }
 
-// ── Reveal progresivo al scroll ──────────────────────
+// ── Header: opacar al scrollear ───────────────────────
+const siteHeader = document.getElementById("top");
+if (siteHeader) {
+  const onHeaderScroll = () => siteHeader.classList.toggle("scrolled", window.scrollY > 10);
+  onHeaderScroll();
+  window.addEventListener("scroll", onHeaderScroll, { passive: true });
+}
+
+// ── Reveal progresivo al scroll (escalonado por tanda) ──
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
   document.body.classList.add("reveal-ready");
   const revealObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-in");
-          revealObserver.unobserve(entry.target);
+      const batch = entries.filter((e) => e.isIntersecting);
+      batch.forEach((entry, i) => {
+        const el = entry.target;
+        // Los elementos que entran juntos al viewport se escalonan 80ms entre sí.
+        // El delay se limpia al terminar para no demorar transiciones posteriores (hover).
+        if (i > 0) {
+          el.style.transitionDelay = Math.min(i * 80, 400) + "ms";
+          el.addEventListener("transitionend", () => (el.style.transitionDelay = ""), { once: true });
         }
+        el.classList.add("is-in");
+        revealObserver.unobserve(el);
       });
     },
     { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
