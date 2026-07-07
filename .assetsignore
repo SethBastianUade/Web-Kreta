@@ -9,6 +9,10 @@ package-lock.json
 tailwind.config.js
 assets/css/tailwind-src.css
 AGENTS.md
+CLAUDE.md
 README.md
 skills-lock.json
 .agents
+.claude
+stitch
+plans

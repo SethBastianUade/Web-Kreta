@@ -1,4 +1,41 @@
+# https://kreta.com.ar — robots.txt
+
+# ─── Bots de buscadores ───
 User-agent: *
 Allow: /
+Disallow: /assets/css/tailwind-src.css
+Disallow: /stitch/
+Disallow: /plans/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.agents/
+Disallow: /.claude/
 
 Sitemap: https://kreta.com.ar/sitemap.xml
+
+# ─── LLMs / AI crawlers ───
+# Referencia para chatbots de búsqueda (ChatGPT, Perplexity, Gemini, etc.)
+# Especificación: https://llmstxt.org
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /llms.txt
+
+User-agent: Google-Extended
+Allow: /
+Allow: /llms.txt
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: Applebot-Extended
+Allow: /
+Allow: /llms.txt

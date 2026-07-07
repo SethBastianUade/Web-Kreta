@@ -1,0 +1,61 @@
+# Kreta
+
+> Tecnología y finanzas para hacer crecer negocios reales. Combinamos desarrollo de software profesional y análisis financiero corporativo para PyMEs y comercios en Argentina.
+
+## Qué es Kreta
+
+Kreta es una empresa argentina fundada en 2025 que une dos disciplinas que normalmente trabajan por separado: desarrollo de software y consultoría financiera. Ayudamos a comercios y PyMEs a escalar automatizando sus ventas e integrando métricas reales para decidir mejor.
+
+Las agencias solo programan; los consultores solo hacen Excel. Kreta une ambos mundos.
+
+## BiFrost — POS con inteligencia financiera
+
+BiFrost es el producto estrella de Kreta: un sistema de punto de venta (POS) con análisis financiero integrado.
+
+- Monitoreo en tiempo real de ventas, stock y márgenes desde cualquier dispositivo.
+- Proyecciones financieras: flujo de caja, margen bruto y neto calculados automáticamente.
+- Reportes ejecutivos con análisis de productos estrella y decisiones de compra respaldadas por datos.
+- Demo disponible: [https://demo.bifrost-software.com.ar/login](https://demo.bifrost-software.com.ar/login)
+
+## Servicios
+
+- **Landing pages**: Diseños de alta conversión orientados a captar leads y ventas directas.
+- **E-commerce**: Tiendas online robustas con integraciones de pago y logística.
+- **Automatizaciones**: Conectamos herramientas para eliminar errores y ahorrar horas de trabajo.
+- **Chatbot WhatsApp**: Atención 24/7 con IA configurada para responder y vender.
+- **Asesoría financiera**: Planificación estratégica para maximizar márgenes y flujo de caja.
+- **BiFrost POS**: Sistema de gestión con inteligencia financiera para comercios.
+
+Los servicios pueden contratarse de forma independiente o combinada. El mayor impacto se logra combinando tecnología y finanzas.
+
+## Plazos
+
+- Landing o chatbot básico: 10 a 15 días hábiles.
+- E-commerce o automatización compleja: 3 a 5 semanas.
+- Cronograma claro con entregas semanales.
+
+## Contacto
+
+- Web: [https://kreta.com.ar](https://kreta.com.ar)
+- Email: contacto@kreta.com.ar
+- WhatsApp: [https://wa.me/5491173696380](https://wa.me/5491173696380)
+- Ubicación: Buenos Aires, Argentina
+- Diagnóstico inicial sin costo. Propuesta en menos de 24 horas.
+
+## Páginas del sitio
+
+- [Inicio](https://kreta.com.ar/)
+- [Servicios](https://kreta.com.ar/secciones/servicios.html)
+- [Nosotros](https://kreta.com.ar/secciones/nosotros.html)
+- [Contacto](https://kreta.com.ar/secciones/contacto.html)
+- [FAQ](https://kreta.com.ar/#faq)
+- [BiFrost](https://kreta.com.ar/#bifrost)
+
+## FAQ
+
+- **¿Qué es exactamente Kreta?** Kreta combina desarrollo de software profesional y análisis financiero corporativo. Ayudamos a comercios y PyMEs a escalar automatizando sus ventas e integrando métricas reales para decidir mejor.
+- **¿Cómo se combinan tecnología y finanzas?** Creamos canales de venta digitales (web, chatbot, e-commerce) y conectamos la operación con BiFrost para proyecciones financieras y flujo de caja en tiempo real.
+- **¿Tengo que contratar ambos servicios?** No. Se puede tomar solo desarrollo web/automatizaciones, solo asesoramiento financiero, o usar BiFrost de forma independiente.
+- **¿Qué es BiFrost y cómo se integra?** BiFrost es un POS con análisis financiero integrado que proyecta flujo de caja, calcula márgenes automáticamente y genera reportes ejecutivos.
+- **¿Cuánto tarda un proyecto web o automatización?** Landing o chatbot básico: 10–15 días hábiles. E-commerce o automatización compleja: 3–5 semanas.
+- **¿Cómo empezamos?** Con una charla de diagnóstico sin costo. Propuesta en menos de 24 horas por WhatsApp o formulario web.
