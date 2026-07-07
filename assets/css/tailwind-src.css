@@ -95,6 +95,13 @@
   .parallax-layer { transform: none !important; }
 }
 
+/* ── Select dropdown: forzar contraste en options nativas ── */
+select option,
+select optgroup {
+  background-color: #131313;
+  color: #e5e5e5;
+}
+
 /* ── Navbar mobile: hamburguesa → X ───────────────────── */
 /* Las 3 barras son h-0.5 (2px) con gap-1.5 (6px): centros a 8px de distancia. */
 [data-menu-toggle] span {
