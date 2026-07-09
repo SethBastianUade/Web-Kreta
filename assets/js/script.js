@@ -72,20 +72,20 @@ document.querySelectorAll(".contact-form").forEach((form) => {
       else if (input.type === "email" && !validateEmail(input.value)) fieldValid = false;
 
       input.classList.toggle("ring-2", !fieldValid);
-      input.classList.toggle("ring-error", !fieldValid);
+      input.classList.toggle("ring-error-soft", !fieldValid);
       if (!fieldValid) isValid = false;
 
       input.addEventListener("input", () => {
         let ok = input.value.trim() && !(input.type === "email" && !validateEmail(input.value));
         input.classList.toggle("ring-2", !ok);
-        input.classList.toggle("ring-error", !ok);
+        input.classList.toggle("ring-error-soft", !ok);
       });
     });
 
     if (!isValid) {
       if (formMessage) {
         formMessage.textContent = "Por favor, completá correctamente todos los campos obligatorios.";
-        formMessage.classList.add("text-error");
+        formMessage.classList.add("text-error-soft");
       }
       return;
     }
@@ -113,10 +113,10 @@ document.querySelectorAll(".contact-form").forEach((form) => {
         if (data.success === "true" || data.success === true) {
           if (formMessage) {
             formMessage.textContent = "¡Gracias por escribirnos! Te responderemos en menos de 24 horas con una propuesta para tu caso.";
-            formMessage.classList.add("text-primary");
+            formMessage.classList.add("text-violet-accent");
           }
           form.reset();
-          requiredInputs.forEach((i) => i.classList.remove("ring-2", "ring-error"));
+          requiredInputs.forEach((i) => i.classList.remove("ring-2", "ring-error-soft"));
         } else {
           throw new Error("Web3Forms response was not successful");
         }
@@ -128,7 +128,7 @@ document.querySelectorAll(".contact-form").forEach((form) => {
         }
         if (formMessage) {
           formMessage.textContent = "No pudimos enviar tu mensaje. Reintentá o escribinos por WhatsApp.";
-          formMessage.classList.add("text-error");
+          formMessage.classList.add("text-error-soft");
         }
       });
   });

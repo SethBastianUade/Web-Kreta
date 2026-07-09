@@ -62,6 +62,7 @@ module.exports = {
         'violet-strong': '#8981ff',
         'on-violet': '#1e0090',
         ember: '#f2994a',
+        'error-soft': '#ff6b6b',
       },
       spacing: {
         unit: '8px',
