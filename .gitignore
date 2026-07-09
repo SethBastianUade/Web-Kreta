@@ -5,3 +5,9 @@ node_modules
 README.md
 skills-lock.json
 .agents
+
+# Worktrees temporales de agentes (desechables, no versionar)
+.claude/worktrees/
+
+# Config de tooling local
+.opencode.jsonc
