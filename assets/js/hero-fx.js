@@ -27,7 +27,11 @@
       "attribute vec2 a_position;varying vec2 v_texCoord;" +
       "void main(){v_texCoord=a_position*0.5+0.5;gl_Position=vec4(a_position,0.0,1.0);}";
     var fs = [
+      "#ifdef GL_FRAGMENT_PRECISION_HIGH",
       "precision highp float;",
+      "#else",
+      "precision mediump float;",
+      "#endif",
       "uniform float u_time;uniform vec2 u_resolution;uniform vec2 u_mouse;",
       "varying vec2 v_texCoord;",
       "vec3 permute(vec3 x){return mod(((x*34.0)+1.0)*x,289.0);}",
@@ -62,12 +66,24 @@
       var s = gl.createShader(type);
       gl.shaderSource(s, src);
       gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        console.warn("aurora-shader: compile failed", gl.getShaderInfoLog(s));
+        gl.deleteShader(s);
+        return null;
+      }
       return s;
     }
+    var vsh = cs(gl.VERTEX_SHADER, vs);
+    var fsh = cs(gl.FRAGMENT_SHADER, fs);
+    if (!vsh || !fsh) return;
     var prog = gl.createProgram();
-    gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
-    gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+    gl.attachShader(prog, vsh);
+    gl.attachShader(prog, fsh);
     gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.warn("aurora-shader: link failed", gl.getProgramInfoLog(prog));
+      return;
+    }
     gl.useProgram(prog);
     var buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
