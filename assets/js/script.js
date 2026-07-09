@@ -54,6 +54,23 @@ function validateEmail(email) {
 }
 
 document.querySelectorAll(".contact-form").forEach((form) => {
+  const requiredInputs = form.querySelectorAll("input[required], select[required], textarea[required]");
+
+  const markField = (input) => {
+    const ok = input.value.trim() && !(input.type === "email" && !validateEmail(input.value));
+    input.classList.toggle("ring-2", !ok);
+    input.classList.toggle("ring-error-soft", !ok);
+    return !!ok;
+  };
+
+  // Validación en vivo: registrada una sola vez, no por submit.
+  // Solo limpia el error una vez marcado; no lo enciende mientras el usuario tipea.
+  requiredInputs.forEach((input) =>
+    input.addEventListener("input", () => {
+      if (input.classList.contains("ring-2")) markField(input);
+    })
+  );
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -64,28 +81,14 @@ document.querySelectorAll(".contact-form").forEach((form) => {
     }
 
     let isValid = true;
-    const requiredInputs = form.querySelectorAll("input[required], select[required], textarea[required]");
-
     requiredInputs.forEach((input) => {
-      let fieldValid = true;
-      if (!input.value.trim()) fieldValid = false;
-      else if (input.type === "email" && !validateEmail(input.value)) fieldValid = false;
-
-      input.classList.toggle("ring-2", !fieldValid);
-      input.classList.toggle("ring-error", !fieldValid);
-      if (!fieldValid) isValid = false;
-
-      input.addEventListener("input", () => {
-        let ok = input.value.trim() && !(input.type === "email" && !validateEmail(input.value));
-        input.classList.toggle("ring-2", !ok);
-        input.classList.toggle("ring-error", !ok);
-      });
+      if (!markField(input)) isValid = false;
     });
 
     if (!isValid) {
       if (formMessage) {
         formMessage.textContent = "Por favor, completá correctamente todos los campos obligatorios.";
-        formMessage.classList.add("text-error");
+        formMessage.classList.add("text-error-soft");
       }
       return;
     }
@@ -113,10 +116,10 @@ document.querySelectorAll(".contact-form").forEach((form) => {
         if (data.success === "true" || data.success === true) {
           if (formMessage) {
             formMessage.textContent = "¡Gracias por escribirnos! Te responderemos en menos de 24 horas con una propuesta para tu caso.";
-            formMessage.classList.add("text-primary");
+            formMessage.classList.add("text-violet-accent");
           }
           form.reset();
-          requiredInputs.forEach((i) => i.classList.remove("ring-2", "ring-error"));
+          requiredInputs.forEach((i) => i.classList.remove("ring-2", "ring-error-soft"));
         } else {
           throw new Error("Web3Forms response was not successful");
         }
@@ -128,7 +131,7 @@ document.querySelectorAll(".contact-form").forEach((form) => {
         }
         if (formMessage) {
           formMessage.textContent = "No pudimos enviar tu mensaje. Reintentá o escribinos por WhatsApp.";
-          formMessage.classList.add("text-error");
+          formMessage.classList.add("text-error-soft");
         }
       });
   });
@@ -159,6 +162,7 @@ if (counters.length && !matchMedia("(prefers-reduced-motion: reduce)").matches) 
         countObserver.unobserve(entry.target);
         const el = entry.target;
         const to = parseFloat(el.dataset.countTo);
+        if (!Number.isFinite(to)) return;
         const decimals = parseInt(el.dataset.countDecimals || "0", 10);
         const prefix = el.dataset.countPrefix || "";
         const suffix = el.dataset.countSuffix || "";
@@ -181,10 +185,16 @@ if (counters.length && !matchMedia("(prefers-reduced-motion: reduce)").matches) 
 // ── Barra de progreso de scroll ──
 const progressBar = document.querySelector(".scroll-progress");
 if (progressBar) {
+  let max = 0;
+  const measure = () => {
+    max = document.documentElement.scrollHeight - window.innerHeight;
+  };
   const onProgress = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
     progressBar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
   };
+  measure();
   onProgress();
   window.addEventListener("scroll", onProgress, { passive: true });
+  window.addEventListener("resize", measure, { passive: true });
+  window.addEventListener("load", measure);
 }

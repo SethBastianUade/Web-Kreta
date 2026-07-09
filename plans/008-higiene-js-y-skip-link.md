@@ -28,7 +28,12 @@ document.querySelectorAll(".contact-form").forEach((form) => {
   };
 
   // Validación en vivo: registrada una sola vez, no por submit.
-  requiredInputs.forEach((input) => input.addEventListener("input", () => markField(input)));
+  // Solo limpia el error una vez marcado; no lo enciende mientras el usuario tipea.
+  requiredInputs.forEach((input) =>
+    input.addEventListener("input", () => {
+      if (input.classList.contains("ring-2")) markField(input);
+    })
+  );
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -56,6 +61,13 @@ document.querySelectorAll(".contact-form").forEach((form) => {
 `requiredInputs` pasa a estar en el scope del `forEach` externo, así que las
 referencias posteriores dentro del handler (la limpieza de rings en el `.then`
 de éxito) siguen funcionando.
+
+**Guard anti-validación agresiva:** el listener de `input` solo re-evalúa el
+campo si ya está marcado como inválido (`ring-2` presente). Así el ring puede
+*desaparecer* al corregir, pero nunca *aparecer* mientras el usuario tipea (p. ej.
+un email a medio escribir); el ring recién se enciende al submitear, que es donde
+`markField` corre incondicionalmente. Sin este guard, tipear en un formulario que
+es la ruta de conversión encendería el error rojo desde la primera tecla.
 
 ---
 

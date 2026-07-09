@@ -12,9 +12,10 @@
     var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
     if (!gl) return;
 
+    var SCALE = 0.5; // ponytail: gradiente suave, el upscale es invisible; subir a 1 si aparece banding
     function syncSize() {
-      var w = canvas.clientWidth || 1280,
-        h = canvas.clientHeight || 720;
+      var w = Math.max(1, Math.round((canvas.clientWidth || 1280) * SCALE)),
+        h = Math.max(1, Math.round((canvas.clientHeight || 720) * SCALE));
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
@@ -27,7 +28,11 @@
       "attribute vec2 a_position;varying vec2 v_texCoord;" +
       "void main(){v_texCoord=a_position*0.5+0.5;gl_Position=vec4(a_position,0.0,1.0);}";
     var fs = [
+      "#ifdef GL_FRAGMENT_PRECISION_HIGH",
       "precision highp float;",
+      "#else",
+      "precision mediump float;",
+      "#endif",
       "uniform float u_time;uniform vec2 u_resolution;uniform vec2 u_mouse;",
       "varying vec2 v_texCoord;",
       "vec3 permute(vec3 x){return mod(((x*34.0)+1.0)*x,289.0);}",
@@ -62,12 +67,24 @@
       var s = gl.createShader(type);
       gl.shaderSource(s, src);
       gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        console.warn("aurora-shader: compile failed", gl.getShaderInfoLog(s));
+        gl.deleteShader(s);
+        return null;
+      }
       return s;
     }
+    var vsh = cs(gl.VERTEX_SHADER, vs);
+    var fsh = cs(gl.FRAGMENT_SHADER, fs);
+    if (!vsh || !fsh) return;
     var prog = gl.createProgram();
-    gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
-    gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+    gl.attachShader(prog, vsh);
+    gl.attachShader(prog, fsh);
     gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.warn("aurora-shader: link failed", gl.getProgramInfoLog(prog));
+      return;
+    }
     gl.useProgram(prog);
     var buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
@@ -88,14 +105,18 @@
       }
     });
 
+    var lastDraw = 0;
+    var FRAME_MS = 1000 / 30; // ponytail: 30fps alcanza para un gradiente lento
     function render(t) {
+      requestAnimationFrame(render);
+      if (t - lastDraw < FRAME_MS) return;
+      lastDraw = t;
       if (typeof ResizeObserver === "undefined") syncSize();
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform1f(uTime, t * 0.001);
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform2f(uMouse, mouse.x, mouse.y);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      requestAnimationFrame(render);
     }
     render(0);
   })();
@@ -120,6 +141,7 @@
       for (var x = spacing / 2; x < w; x += spacing)
         for (var y = spacing / 2; y < h; y += spacing) dots.push({ x: x, y: y });
     }
+    var rafId = null;
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (var i = 0; i < dots.length; i++) {
@@ -138,9 +160,22 @@
         ctx.fillStyle = "rgba(255,255,255," + op + ")";
         ctx.fill();
       }
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     }
-    window.addEventListener("resize", init);
+    function start() {
+      if (rafId === null) rafId = requestAnimationFrame(animate);
+    }
+    function stop() {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    }
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(init, 150);
+    });
     // El grid no captura eventos (pointer-events:none); seguimos el mouse a nivel ventana.
     window.addEventListener("mousemove", function (e) {
       var rect = container.getBoundingClientRect();
@@ -160,7 +195,13 @@
       { passive: true }
     );
     init();
-    animate();
+    if (typeof IntersectionObserver !== "undefined") {
+      new IntersectionObserver(function (entries) {
+        entries[0].isIntersecting ? start() : stop();
+      }).observe(container);
+    } else {
+      start(); // ponytail: sin IO, comportamiento previo
+    }
   })();
 
   // ── Parallax de capas del hero ──
