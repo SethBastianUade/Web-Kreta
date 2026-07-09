@@ -1,114 +1,64 @@
-# 010 — Cloudflare Web Analytics + instrumentación de los 3 CTAs
+# 010 — Cloudflare Web Analytics
 
 **Priority:** P2 · **Effort:** S · **Risk:** LOW · **Depends on:** —
-**Status: BLOQUEADO** hasta que el usuario provea el token del beacon.
+**Status: RESUELTO SIN CÓDIGO** (2026-07-09). No hay cambios que ejecutar en este repo.
 
 ## Problema
 
-El sitio tiene **cero telemetría**. Hay tres CTAs distintos y ninguno está
-instrumentado:
+El sitio tenía **cero telemetría**. Hay tres CTAs distintos y ninguno instrumentado:
 
 - WhatsApp flotante — `index.html:103`
 - WhatsApp del hero — `index.html:127`
 - Submit del formulario de contacto — `index.html:456` / `secciones/contacto.html:178`
 
-No se puede saber cuál convierte. (Síntoma: el usuario armó una encuesta de
-Google Forms a mano justamente para suplir esta falta de datos.)
+No se podía saber cuál convierte. (Síntoma: se armó una encuesta de Google Forms
+a mano justamente para suplir esta falta de datos.)
 
-Cloudflare Web Analytics es la opción natural: el sitio ya está en Cloudflare
-Pages, el beacon **no usa cookies ni fingerprinting** → no requiere banner de
-consentimiento, y es gratis.
+Cloudflare Web Analytics es la opción natural: el sitio ya se sirve con Cloudflare
+Workers Static Assets, el beacon **no usa cookies ni fingerprinting** → no requiere
+banner de consentimiento, y es gratis.
 
----
+## Decisión: instalación automática, no snippet
 
-## ⛔ Dependencia dura: el token del beacon
+El dominio ya pasa por la red de Cloudflare, así que el beacon se inyecta del lado
+del servidor en las respuestas HTML. **No se toca el repo.**
 
-El beacon necesita un token que genera **el usuario** en su dashboard de
-Cloudflare (Analytics & Logs → Web Analytics → Add a site → copiar el token del
-snippet).
+Dashboard → Web Analytics → el sitio → **"Habilitar automáticamente"**
+(en vez de "Habilitar con la instalación del snippet JS").
 
-**El executor NO debe inventar, adivinar ni usar un token de ejemplo.**
-Si el token no está provisto en el prompt de la tarea:
+Por qué esta opción y no pegar el `<script>` en los 4 `<head>`:
 
-> **STOP inmediato.** Reportá: "Falta el token del beacon de Cloudflare Web
-> Analytics. Obtenelo en el dashboard de Cloudflare y volvé a lanzar el plan con
-> el token." No escribas ningún archivo.
+- Cero diff, cero riesgo de romper el deploy, cero duplicación en 4 archivos.
+- Se apaga o se rota desde el dashboard sin necesidad de un commit.
+- Contra asumida: la instalación es invisible para quien lea el repo. Esta nota
+  existe justamente para compensar eso.
 
-El token no es un secreto (viaja en el HTML público del sitio), pero un token
-inventado rompe el beacon en silencio.
+El token del beacon (público por diseño: viajaría en el HTML servido) queda solo
+en el dashboard de Cloudflare. No está versionado en este repo.
 
----
+Nota sobre el snippet, por si algún día hace falta volver a él: Cloudflare lo
+entrega con `type='module'`, que **ya es diferido por defecto**. Agregarle `defer`
+es redundante.
 
-## Step 1 — Beacon en las 4 páginas
+## Qué da y qué no
 
-Insertá, como **última línea antes de `</body>`** en `index.html` y en las 3
-subpáginas de `secciones/`:
+**Da:** pageviews, referrers, países, dispositivos/navegadores y Core Web Vitals
+por página. Desde cero telemetría, es el salto grande.
 
-```html
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "TOKEN_AQUI"}'></script>
-```
+**No da:** eventos custom. El plan gratuito no los expone.
 
-`defer` para que no bloquee el render. Reemplazá `TOKEN_AQUI` por el token real.
+## Considered and rejected — eventos por CTA
 
----
+- **Hashes de URL vía `history.replaceState`** (idea original de este plan):
+  **no funciona.** `replaceState` no dispara ningún reporte del beacon, y
+  Cloudflare Web Analytics no cuenta navegaciones de history API como pageviews.
+  Habría dado la ilusión de telemetría sin datos reales.
+- **Endpoint propio (Worker + almacenamiento)**: daría eventos atribuibles por
+  CTA, pero es un servicio nuevo que mantener. Desproporcionado hoy.
+- **GA4 en paralelo**: sí tiene eventos custom gratis, pero usa cookies → exige
+  banner de consentimiento y pesa bastante más. Contradice la razón por la que se
+  eligió Cloudflare.
 
-## Step 2 — Eventos en los 3 CTAs
-
-Cloudflare Web Analytics expone `window.__cfBeacon` pero **no** una API de
-eventos custom estable en el plan gratuito. Para no depender de eso, usá
-`data-*` + un handler propio que registre el click como una navegación virtual,
-que es lo que el beacon sí cuenta.
-
-Enfoque mínimo y honesto: agregá al final de `assets/js/script.js`:
-
-```js
-// ── Telemetría de CTAs (Cloudflare Web Analytics cuenta pageviews) ──
-// ponytail: sin API de eventos custom en el plan free; usamos hashes de URL,
-// que el beacon registra como vistas. Subir a un endpoint propio si hace falta más.
-document.querySelectorAll("[data-cta]").forEach((el) => {
-  el.addEventListener("click", () => {
-    try {
-      history.replaceState(null, "", "#cta-" + el.dataset.cta);
-    } catch (_) {}
-  });
-});
-```
-
-Y marcá los 3 CTAs con el atributo:
-
-- `index.html:103` (WhatsApp flotante) → agregá `data-cta="whatsapp-float"`
-- `index.html:127` (WhatsApp del hero) → agregá `data-cta="whatsapp-hero"`
-- Los `<form class="contact-form">` de `index.html` y `secciones/contacto.html`
-  → agregá `data-cta="form-submit"` **al botón submit** de cada uno.
-
-`data-cta` no es una clase de Tailwind, así que **este step no requiere build**.
-Pero el Step 3 sí puede requerirlo si tocás clases; no deberías.
-
-> Si preferís no ensuciar la URL con hashes, la alternativa es aceptar que el
-> plan free no da eventos custom y limitarse al Step 1 (pageviews + referrers +
-> Core Web Vitals, que ya es un salto enorme respecto de cero). **Decidilo con
-> el usuario, no por tu cuenta.** Si hay duda, hacé **solo el Step 1**.
-
----
-
-## Done criteria
-
-1. `grep -c 'cloudflareinsights.com/beacon' index.html secciones/*.html` → 1 en
-   cada uno de los 4.
-2. En los 4, el `<script>` del beacon está antes de `</body>` y tiene `defer`.
-3. `grep -c 'TOKEN_AQUI' index.html secciones/*.html` → **0 en los 4** (o sea:
-   el placeholder fue reemplazado).
-4. Si se hizo el Step 2: `node --check assets/js/script.js` → exit 0, y
-   `grep -c 'data-cta' index.html secciones/contacto.html` → ≥1 en cada uno.
-5. No se modificó `tailwind.config.js` ni `assets/css/tailwind.css`.
-
-## STOP conditions
-
-- Sin token → parar antes de escribir nada (ver arriba).
-- Duda sobre el Step 2 → hacer solo el Step 1 y reportar.
-
-## Commit
-
-```
-feat: Cloudflare Web Analytics (cookieless) en las 4 paginas
-```
+**Cuándo revisarlo:** cuando los pageviews muestren que alguna página convierte
+mal y haga falta saber cuál de los 3 CTAs falla. Antes de eso, es instrumentación
+sin pregunta que responder.
