@@ -156,7 +156,11 @@
       }
       requestAnimationFrame(animate);
     }
-    window.addEventListener("resize", init);
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(init, 150);
+    });
     // El grid no captura eventos (pointer-events:none); seguimos el mouse a nivel ventana.
     window.addEventListener("mousemove", function (e) {
       var rect = container.getBoundingClientRect();

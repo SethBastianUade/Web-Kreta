@@ -54,6 +54,23 @@ function validateEmail(email) {
 }
 
 document.querySelectorAll(".contact-form").forEach((form) => {
+  const requiredInputs = form.querySelectorAll("input[required], select[required], textarea[required]");
+
+  const markField = (input) => {
+    const ok = input.value.trim() && !(input.type === "email" && !validateEmail(input.value));
+    input.classList.toggle("ring-2", !ok);
+    input.classList.toggle("ring-error-soft", !ok);
+    return !!ok;
+  };
+
+  // Validación en vivo: registrada una sola vez, no por submit.
+  // Solo limpia el error una vez marcado; no lo enciende mientras el usuario tipea.
+  requiredInputs.forEach((input) =>
+    input.addEventListener("input", () => {
+      if (input.classList.contains("ring-2")) markField(input);
+    })
+  );
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -64,22 +81,8 @@ document.querySelectorAll(".contact-form").forEach((form) => {
     }
 
     let isValid = true;
-    const requiredInputs = form.querySelectorAll("input[required], select[required], textarea[required]");
-
     requiredInputs.forEach((input) => {
-      let fieldValid = true;
-      if (!input.value.trim()) fieldValid = false;
-      else if (input.type === "email" && !validateEmail(input.value)) fieldValid = false;
-
-      input.classList.toggle("ring-2", !fieldValid);
-      input.classList.toggle("ring-error-soft", !fieldValid);
-      if (!fieldValid) isValid = false;
-
-      input.addEventListener("input", () => {
-        let ok = input.value.trim() && !(input.type === "email" && !validateEmail(input.value));
-        input.classList.toggle("ring-2", !ok);
-        input.classList.toggle("ring-error-soft", !ok);
-      });
+      if (!markField(input)) isValid = false;
     });
 
     if (!isValid) {
@@ -159,6 +162,7 @@ if (counters.length && !matchMedia("(prefers-reduced-motion: reduce)").matches) 
         countObserver.unobserve(entry.target);
         const el = entry.target;
         const to = parseFloat(el.dataset.countTo);
+        if (!Number.isFinite(to)) return;
         const decimals = parseInt(el.dataset.countDecimals || "0", 10);
         const prefix = el.dataset.countPrefix || "";
         const suffix = el.dataset.countSuffix || "";
@@ -181,10 +185,16 @@ if (counters.length && !matchMedia("(prefers-reduced-motion: reduce)").matches) 
 // ── Barra de progreso de scroll ──
 const progressBar = document.querySelector(".scroll-progress");
 if (progressBar) {
+  let max = 0;
+  const measure = () => {
+    max = document.documentElement.scrollHeight - window.innerHeight;
+  };
   const onProgress = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
     progressBar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
   };
+  measure();
   onProgress();
   window.addEventListener("scroll", onProgress, { passive: true });
+  window.addEventListener("resize", measure, { passive: true });
+  window.addEventListener("load", measure);
 }
