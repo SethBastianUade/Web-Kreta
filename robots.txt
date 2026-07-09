@@ -3,13 +3,6 @@
 # ─── Bots de buscadores ───
 User-agent: *
 Allow: /
-Disallow: /assets/css/tailwind-src.css
-Disallow: /stitch/
-Disallow: /plans/
-Disallow: /node_modules/
-Disallow: /.git/
-Disallow: /.agents/
-Disallow: /.claude/
 
 Sitemap: https://kreta.com.ar/sitemap.xml
 
