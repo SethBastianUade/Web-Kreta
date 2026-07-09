@@ -12,9 +12,10 @@
     var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
     if (!gl) return;
 
+    var SCALE = 0.5; // ponytail: gradiente suave, el upscale es invisible; subir a 1 si aparece banding
     function syncSize() {
-      var w = canvas.clientWidth || 1280,
-        h = canvas.clientHeight || 720;
+      var w = Math.max(1, Math.round((canvas.clientWidth || 1280) * SCALE)),
+        h = Math.max(1, Math.round((canvas.clientHeight || 720) * SCALE));
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
@@ -104,14 +105,18 @@
       }
     });
 
+    var lastDraw = 0;
+    var FRAME_MS = 1000 / 30; // ponytail: 30fps alcanza para un gradiente lento
     function render(t) {
+      requestAnimationFrame(render);
+      if (t - lastDraw < FRAME_MS) return;
+      lastDraw = t;
       if (typeof ResizeObserver === "undefined") syncSize();
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform1f(uTime, t * 0.001);
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform2f(uMouse, mouse.x, mouse.y);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      requestAnimationFrame(render);
     }
     render(0);
   })();
@@ -136,6 +141,7 @@
       for (var x = spacing / 2; x < w; x += spacing)
         for (var y = spacing / 2; y < h; y += spacing) dots.push({ x: x, y: y });
     }
+    var rafId = null;
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (var i = 0; i < dots.length; i++) {
@@ -154,7 +160,16 @@
         ctx.fillStyle = "rgba(255,255,255," + op + ")";
         ctx.fill();
       }
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
+    }
+    function start() {
+      if (rafId === null) rafId = requestAnimationFrame(animate);
+    }
+    function stop() {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
     }
     var resizeTimer;
     window.addEventListener("resize", function () {
@@ -180,7 +195,13 @@
       { passive: true }
     );
     init();
-    animate();
+    if (typeof IntersectionObserver !== "undefined") {
+      new IntersectionObserver(function (entries) {
+        entries[0].isIntersecting ? start() : stop();
+      }).observe(container);
+    } else {
+      start(); // ponytail: sin IO, comportamiento previo
+    }
   })();
 
   // ── Parallax de capas del hero ──
