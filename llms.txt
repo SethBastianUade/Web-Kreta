@@ -6,15 +6,14 @@
 
 Kreta es una empresa argentina fundada en 2025 que une dos disciplinas que normalmente trabajan por separado: desarrollo de software y consultoría financiera. Ayudamos a comercios y PyMEs a escalar automatizando sus ventas e integrando métricas reales para decidir mejor.
 
-Las agencias solo programan; los consultores solo hacen Excel. Kreta une ambos mundos.
+En vez de contratar una agencia web por un lado y un asesor financiero por otro, en Kreta tenés ambos mundos integrados en un solo equipo.
 
 ## BiFrost — POS con inteligencia financiera
 
 BiFrost es el producto estrella de Kreta: un sistema de punto de venta (POS) con análisis financiero integrado.
 
 - Monitoreo en tiempo real de ventas, stock y márgenes desde cualquier dispositivo.
-- Proyecciones financieras: flujo de caja, margen bruto y neto calculados automáticamente.
-- Reportes ejecutivos con análisis de productos estrella y decisiones de compra respaldadas por datos.
+- Proyecciones financieras: flujo de caja y márgenes de rentabilidad calculados automáticamente.
 - Demo disponible: [https://demo.bifrost-software.com.ar/login](https://demo.bifrost-software.com.ar/login)
 
 ## Servicios
@@ -40,7 +39,7 @@ Los servicios pueden contratarse de forma independiente o combinada. El mayor im
 - Email: contacto@kreta.com.ar
 - WhatsApp: [https://wa.me/5491173696380](https://wa.me/5491173696380)
 - Ubicación: Buenos Aires, Argentina
-- Diagnóstico inicial sin costo. Propuesta en menos de 24 horas.
+- Diagnóstico inicial con un arancel mínimo que se descuenta de la propuesta si avanzás. Propuesta en 24 a 48 horas hábiles.
 
 ## Páginas del sitio
 
@@ -53,9 +52,9 @@ Los servicios pueden contratarse de forma independiente o combinada. El mayor im
 
 ## FAQ
 
-- **¿Qué es exactamente Kreta?** Kreta combina desarrollo de software profesional y análisis financiero corporativo. Ayudamos a comercios y PyMEs a escalar automatizando sus ventas e integrando métricas reales para decidir mejor.
+- **¿Qué es exactamente Kreta?** Ayudamos a PyMEs a escalar automatizando sus ventas e integrando métricas basadas en datos para tomar mejores decisiones. Combinamos desarrollo de software y análisis financiero en un solo equipo.
 - **¿Cómo se combinan tecnología y finanzas?** Creamos canales de venta digitales (web, chatbot, e-commerce) y conectamos la operación con BiFrost para proyecciones financieras y flujo de caja en tiempo real.
-- **¿Tengo que contratar ambos servicios?** No. Se puede tomar solo desarrollo web/automatizaciones, solo asesoramiento financiero, o usar BiFrost de forma independiente.
-- **¿Qué es BiFrost y cómo se integra?** BiFrost es un POS con análisis financiero integrado que proyecta flujo de caja, calcula márgenes automáticamente y genera reportes ejecutivos.
+- **¿Puedo contratar un solo servicio?** Sí. Se puede tomar solo desarrollo web/automatizaciones, solo asesoramiento financiero, o usar BiFrost de forma independiente.
+- **¿Qué es BiFrost y cómo se integra?** BiFrost es un POS con análisis financiero integrado que proyecta flujo de caja y calcula tus márgenes de rentabilidad automáticamente.
 - **¿Cuánto tarda un proyecto web o automatización?** Landing o chatbot básico: 10–15 días hábiles. E-commerce o automatización compleja: 3–5 semanas.
-- **¿Cómo empezamos?** Con una charla de diagnóstico sin costo. Propuesta en menos de 24 horas por WhatsApp o formulario web.
+- **¿Cómo empezamos?** Con un diagnóstico inicial con un arancel mínimo que se descuenta de la propuesta si avanzás. Propuesta en 24 a 48 horas hábiles por WhatsApp o formulario web.
