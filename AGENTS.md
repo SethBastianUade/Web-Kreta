@@ -54,7 +54,7 @@ After editing HTML/JS: `npm run build`, then commit `tailwind.css`. Preview by o
 - **Cards:** `.glass`/`.glass-card` + `rounded-lg`. Inputs: `bg-white/5 border-white/10`.
 - **Form:** POST to `https://api.web3forms.com/submit`, `access_key` in hidden input, `class="contact-form"`
   + `.form-note` para el estado. Submission AJAX via `script.js` (no page reload).
-- **WhatsApp:** `wa.me/5491173696380`
+- **WhatsApp:** `wa.me/5491138550991`
 - **BiFrost demo:** `https://demo.bifrost-software.com.ar/login` (demo@test.com / demo123)
 - **Dominio:** `kreta.com.ar`
 - **OG image:** `assets/img/og-image.svg`
