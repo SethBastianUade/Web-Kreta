@@ -11,3 +11,10 @@ skills-lock.json
 
 # Config de tooling local
 .opencode.jsonc
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
